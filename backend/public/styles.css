@@ -1219,8 +1219,10 @@ tr:hover {
 
     /* ===== MOBILE SPACING FIX - Reduce gaps between sections ===== */
     .hero {
-        min-height: auto;
-        padding: 100px 0 var(--spacing-lg);
+        min-height: auto !important;
+        height: auto !important;
+        align-items: flex-start !important;
+        padding: 90px 0 var(--spacing-md) !important;
     }
 
     .hero h1 {
