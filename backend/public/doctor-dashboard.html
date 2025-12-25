@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Dashboard - HealthPlus Clinic</title>
+    <meta name="description" content="Doctor Dashboard - Manage your appointments and patients at HealthPlus Clinic.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-heartbeat"></i>
+                <span>HealthPlus</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="doctor-dashboard.html" class="active">Dashboard</a></li>
+                <li><a href="doctors.html">My Profile</a></li>
+                <li><a href="services.html">Services</a></li>
+            </ul>
+            <div class="nav-cta">
+                <span style="color: var(--text-slate); margin-right: var(--spacing-sm);">
+                    <i class="fas fa-user-md"></i> Dr. Abhay Yadav
+                </span>
+                <button class="btn btn-danger btn-sm" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+            <div class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1><i class="fas fa-tachometer-alt"></i> Doctor Dashboard</h1>
+            <p>Welcome, Dr. Abhay Yadav | Psychiatry | ID: DOC-2019-001</p>
+        </div>
+    </header>
+
+    <!-- Dashboard Content -->
+    <section class="section">
+        <div class="container">
+            <!-- Quick Stats -->
+            <div class="dashboard-grid" style="margin-bottom: var(--spacing-xl);">
+                <div class="dashboard-card highlight">
+                    <i class="fas fa-calendar-check"></i>
+                    <h3>Today's Appointments</h3>
+                    <div class="value">8</div>
+                </div>
+                <div class="dashboard-card">
+                    <i class="fas fa-user-clock"></i>
+                    <h3>In Waiting Queue</h3>
+                    <div class="value">3</div>
+                </div>
+                <div class="dashboard-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Total Patients</h3>
+                    <div class="value">156</div>
+                </div>
+                <div class="dashboard-card">
+                    <i class="fas fa-rupee-sign"></i>
+                    <h3>Today's Earnings</h3>
+                    <div class="value">₹4,800</div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: var(--spacing-xl);">
+                <!-- Left Column -->
+                <div>
+                    <!-- Today's Appointments -->
+                    <div class="portal-card" style="margin-bottom: var(--spacing-xl);">
+                        <h2><i class="fas fa-calendar-day"></i> Today's Appointments - December 8, 2025</h2>
+                        <div class="table-wrapper" style="margin-top: var(--spacing-md);">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Time</th>
+                                        <th>Patient</th>
+                                        <th>Type</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>04:00 PM</td>
+                                        <td>
+                                            <strong>Anoop Chaudhary</strong>
+                                            <br><small style="color: var(--text-slate);">HP2018001 | Male, 32</small>
+                                        </td>
+                                        <td>Follow-up</td>
+                                        <td><span class="status status-confirmed">In Clinic</span></td>
+                                        <td>
+                                            <button class="btn btn-primary btn-sm"
+                                                onclick="startConsultation(1)">Start</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>04:30 PM</td>
+                                        <td>
+                                            <strong>Aditya Kumar</strong>
+                                            <br><small style="color: var(--text-slate);">HP2019045 | Male, 28</small>
+                                        </td>
+                                        <td>New Patient</td>
+                                        <td><span class="status status-pending">Waiting</span></td>
+                                        <td>
+                                            <button class="btn btn-glass btn-sm"
+                                                onclick="viewPatientRecord(2)">View</button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>05:00 PM</td>
+                                        <td>
+                                            <strong>Shubham Prajapati</strong>
+                                            <br><small style="color: var(--text-slate);">HP2021067 | Male, 25</small>
+                                        </td>
+                                        <td>Video Call</td>
+                                        <td><span class="status status-pending">Scheduled</span></td>
+                                        <td>
+                                            <button class="btn btn-glass btn-sm" onclick="startVideoCall(3)">
+                                                <i class="fas fa-video"></i>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>05:30 PM</td>
+                                        <td>
+                                            <strong>Rahul Singh</strong>
+                                            <br><small style="color: var(--text-slate);">HP2022089 | Male, 35</small>
+                                        </td>
+                                        <td>Follow-up</td>
+                                        <td><span class="status status-pending">Scheduled</span></td>
+                                        <td>
+                                            <button class="btn btn-glass btn-sm"
+                                                onclick="viewPatientRecord(4)">View</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Write Prescription -->
+                    <div class="portal-card">
+                        <h2><i class="fas fa-prescription-bottle-alt"></i> Write Prescription</h2>
+                        <form id="prescriptionForm" style="margin-top: var(--spacing-md);">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="rxPatient"><i class="fas fa-user"></i> Patient</label>
+                                    <select id="rxPatient" required>
+                                        <option value="">Select Patient</option>
+                                        <option value="1">Anoop Chaudhary - HP2018001</option>
+                                        <option value="2">Aditya Kumar - HP2019045</option>
+                                        <option value="3">Shubham Prajapati - HP2021067</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="rxDate"><i class="fas fa-calendar"></i> Date</label>
+                                    <input type="date" id="rxDate" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="rxDiagnosis"><i class="fas fa-notes-medical"></i> Diagnosis</label>
+                                <input type="text" id="rxDiagnosis" placeholder="Primary diagnosis" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="rxMedicines"><i class="fas fa-pills"></i> Medicines</label>
+                                <textarea id="rxMedicines" rows="4" placeholder="List medicines with dosage..."
+                                    required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="rxNotes"><i class="fas fa-comment-medical"></i> Notes / Instructions</label>
+                                <textarea id="rxNotes" rows="3"
+                                    placeholder="Additional instructions for patient..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-save"></i> Save & Send Prescription
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div>
+                    <!-- Quick Actions -->
+                    <div class="portal-card" style="margin-bottom: var(--spacing-lg);">
+                        <h2><i class="fas fa-bolt"></i> Quick Actions</h2>
+                        <div style="display: grid; gap: var(--spacing-sm); margin-top: var(--spacing-md);">
+                            <button class="btn btn-primary" style="width: 100%;" onclick="writePrescription()">
+                                <i class="fas fa-prescription"></i> New Prescription
+                            </button>
+                            <button class="btn btn-glass" style="width: 100%;">
+                                <i class="fas fa-flask"></i> Order Lab Test
+                            </button>
+                            <button class="btn btn-glass" style="width: 100%;">
+                                <i class="fas fa-history"></i> Patient History
+                            </button>
+                            <button class="btn btn-glass" style="width: 100%;">
+                                <i class="fas fa-calendar-alt"></i> Manage Schedule
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Today's Summary -->
+                    <div class="portal-card" style="margin-bottom: var(--spacing-lg);">
+                        <h2><i class="fas fa-chart-pie"></i> Today's Summary</h2>
+                        <div style="margin-top: var(--spacing-md);">
+                            <div
+                                style="display: flex; justify-content: space-between; padding: var(--spacing-sm) 0; border-bottom: 1px solid var(--glass-border);">
+                                <span style="color: var(--text-slate);">Completed</span>
+                                <span style="color: var(--accent-teal); font-weight: 600;">5</span>
+                            </div>
+                            <div
+                                style="display: flex; justify-content: space-between; padding: var(--spacing-sm) 0; border-bottom: 1px solid var(--glass-border);">
+                                <span style="color: var(--text-slate);">Remaining</span>
+                                <span style="color: var(--accent-gold); font-weight: 600;">3</span>
+                            </div>
+                            <div
+                                style="display: flex; justify-content: space-between; padding: var(--spacing-sm) 0; border-bottom: 1px solid var(--glass-border);">
+                                <span style="color: var(--text-slate);">Cancelled</span>
+                                <span style="color: var(--accent-coral); font-weight: 600;">1</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; padding: var(--spacing-sm) 0;">
+                                <span style="color: var(--text-slate);">Video Calls</span>
+                                <span style="color: var(--accent-purple); font-weight: 600;">2</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Current Patient -->
+                    <div class="portal-card"
+                        style="background: linear-gradient(135deg, rgba(100, 255, 218, 0.1), rgba(100, 255, 218, 0.05)); border-color: var(--accent-teal);">
+                        <h2><i class="fas fa-user-injured"></i> Current Patient</h2>
+                        <div style="margin-top: var(--spacing-md); text-align: center;">
+                            <div
+                                style="width: 80px; height: 80px; background: var(--gradient-teal); border-radius: 50%; margin: 0 auto var(--spacing-md); display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-user" style="font-size: 2rem; color: var(--primary-dark);"></i>
+                            </div>
+                            <h3 style="margin-bottom: 0.2rem;">Anoop Chaudhary</h3>
+                            <p style="color: var(--accent-teal); font-size: 0.9rem; margin: 0;">HP2018001</p>
+                            <p style="color: var(--text-slate); font-size: 0.85rem;">Male, 32 years | Follow-up</p>
+                            <div
+                                style="display: flex; gap: var(--spacing-sm); justify-content: center; margin-top: var(--spacing-md);">
+                                <button class="btn btn-glass btn-sm" onclick="viewPatientRecord(1)">
+                                    <i class="fas fa-file-medical"></i> History
+                                </button>
+                                <button class="btn btn-glass btn-sm" onclick="callPatient(1)">
+                                    <i class="fas fa-phone"></i> Call
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 HealthPlus Clinic. All Rights Reserved. |
+                    <i class="fas fa-envelope"></i> info@healthplusclinic.com, yadav00007ab@gmail.com
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

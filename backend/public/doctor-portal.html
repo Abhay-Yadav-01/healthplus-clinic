@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Portal - HealthPlus Clinic</title>
+    <meta name="description" content="Doctor Portal - Secure access for medical professionals at HealthPlus Clinic.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-heartbeat"></i>
+                <span>HealthPlus</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="doctors.html">Doctors</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="patient-portal.html" class="btn btn-glass btn-sm">Patient Portal</a>
+                <a href="doctor-portal.html" class="btn btn-primary btn-sm">Doctor Portal</a>
+            </div>
+            <div class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1><i class="fas fa-user-md"></i> Doctor Portal</h1>
+            <p>Secure access for medical professionals</p>
+        </div>
+    </header>
+
+    <!-- Portal Content -->
+    <section class="section">
+        <div class="container">
+            <!-- Login Box -->
+            <div class="login-box">
+                <h2><i class="fas fa-user-md"></i> Doctor Login</h2>
+                <p style="text-align: center; color: var(--text-slate); margin-bottom: var(--spacing-lg);">
+                    Secure access for authorized medical professionals
+                </p>
+
+                <form id="doctorLoginForm">
+                    <div class="form-group">
+                        <label for="doctorEmail"><i class="fas fa-id-badge"></i> Doctor ID / Email</label>
+                        <input type="text" id="doctorEmail" placeholder="Enter your Doctor ID or email" required>
+                        <small style="color: var(--text-slate);">Use your registered Doctor ID or email address</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="doctorPassword"><i class="fas fa-lock"></i> Password</label>
+                        <input type="password" id="doctorPassword" placeholder="Enter your password" required>
+                    </div>
+                    <div
+                        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--spacing-md);">
+                        <label
+                            style="display: flex; align-items: center; gap: var(--spacing-xs); font-size: 0.9rem; color: var(--text-slate);">
+                            <input type="checkbox" name="rememberMe"> Remember me
+                        </label>
+                        <a href="#" style="color: var(--accent-teal); font-size: 0.9rem;">Forgot Password?</a>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+                        <i class="fas fa-sign-in-alt"></i> Secure Login
+                    </button>
+                </form>
+
+                <!-- Security Notice -->
+                <div
+                    style="margin-top: var(--spacing-lg); padding: var(--spacing-md); background: rgba(255, 217, 61, 0.1); border-left: 4px solid var(--accent-gold); border-radius: var(--radius-sm);">
+                    <p style="margin: 0; color: var(--accent-gold); font-size: 0.9rem;">
+                        <i class="fas fa-shield-alt"></i> <strong>Security Notice:</strong><br>
+                        This portal is restricted to authorized medical staff only. All login attempts are logged and
+                        monitored.
+                    </p>
+                </div>
+
+                <p style="text-align: center; margin-top: var(--spacing-md); color: var(--text-slate);">
+                    Need help? <a href="contact.html" style="color: var(--accent-teal);">Contact IT Support</a>
+                </p>
+            </div>
+
+            <!-- Features -->
+            <div style="margin-top: var(--spacing-xxl);">
+                <div class="section-header">
+                    <span class="section-badge">Features</span>
+                    <h2 class="section-title">Doctor Portal Features</h2>
+                </div>
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h3>Appointment Schedule</h3>
+                        <p style="color: var(--text-slate);">View daily appointments</p>
+                    </div>
+                    <div class="dashboard-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Patient Queue</h3>
+                        <p style="color: var(--text-slate);">Monitor waiting queue</p>
+                    </div>
+                    <div class="dashboard-card">
+                        <i class="fas fa-file-prescription"></i>
+                        <h3>Digital Prescriptions</h3>
+                        <p style="color: var(--text-slate);">Create e-prescriptions</p>
+                    </div>
+                    <div class="dashboard-card">
+                        <i class="fas fa-notes-medical"></i>
+                        <h3>Medical Records</h3>
+                        <p style="color: var(--text-slate);">Access patient history</p>
+                    </div>
+                    <div class="dashboard-card">
+                        <i class="fas fa-vial"></i>
+                        <h3>Lab Test Orders</h3>
+                        <p style="color: var(--text-slate);">Order and review tests</p>
+                    </div>
+                    <div class="dashboard-card">
+                        <i class="fas fa-video"></i>
+                        <h3>Video Consultations</h3>
+                        <p style="color: var(--text-slate);">Remote consultations</p>
+                    </div>
+                    <div class="dashboard-card">
+                        <i class="fas fa-chart-line"></i>
+                        <h3>Patient Analytics</h3>
+                        <p style="color: var(--text-slate);">Track outcomes</p>
+                    </div>
+                    <div class="dashboard-card">
+                        <i class="fas fa-rupee-sign"></i>
+                        <h3>Earnings Summary</h3>
+                        <p style="color: var(--text-slate);">View consultation fees</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3><i class="fas fa-heartbeat"></i> HealthPlus Clinic</h3>
+                    <p>Your Family's Health Partner providing comprehensive healthcare services since 2018.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Information</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> +91-705-269-1142</li>
+                        <li><i class="fas fa-envelope"></i> info@healthplusclinic.com</li>
+                        <li><i class="fas fa-envelope"></i> yadav00007ab@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 HealthPlus Clinic. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Doctor Login Form
+        document.getElementById('doctorLoginForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const btn = this.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Authenticating...';
+            btn.disabled = true;
+
+            const formData = {
+                email: document.getElementById('doctorEmail').value,
+                password: document.getElementById('doctorPassword').value
+            };
+
+            try {
+                const response = await fetch('/api/doctors/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    localStorage.setItem('doctorToken', result.token);
+                    localStorage.setItem('doctorUser', JSON.stringify(result.user));
+                    alert('Login successful! Welcome, ' + result.user.name);
+                    window.location.href = 'doctor-dashboard.html';
+                } else {
+                    alert('Error: ' + (result.error || 'Invalid credentials'));
+                }
+            } catch (error) {
+                alert('Connection error! Please make sure the backend server is running.');
+                console.error('Error:', error);
+            }
+
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+        });
+    </script>
+</body>
+
+</html>

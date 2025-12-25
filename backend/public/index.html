@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#0d6efd">
+    <title>HealthPlus Clinic - Your Family's Health Partner</title>
+    <meta name="description"
+        content="HealthPlus Clinic provides comprehensive healthcare services with experienced doctors in Gorakhpur. Book appointments online.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-heartbeat"></i>
+                <span>HealthPlus</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="doctors.html">Doctors</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="patient-portal.html" class="btn btn-glass btn-sm">Patient Portal</a>
+                <a href="doctor-portal.html" class="btn btn-glass btn-sm">Doctor Portal</a>
+                <a href="appointment.html" class="btn btn-primary btn-sm">Book Now</a>
+            </div>
+            <div class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <i class="fas fa-circle"></i>
+                    24/7 Emergency Services Available
+                </div>
+                <h1>Your Family's <span>Health Partner</span></h1>
+                <p class="hero-tagline">HealthPlus Clinic, Gorakhpur</p>
+                <p class="hero-description">
+                    Experience world-class healthcare with our team of 25+ expert doctors across 12 specialties.
+                    State-of-the-art facilities combined with compassionate care since 2018.
+                </p>
+                <div class="hero-buttons">
+                    <a href="appointment.html" class="btn btn-primary btn-lg">
+                        <i class="fas fa-calendar-check"></i> Book Appointment
+                    </a>
+                    <a href="#services" class="btn btn-secondary btn-lg">
+                        <i class="fas fa-stethoscope"></i> Our Services
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="50000" data-suffix="+">0</span>
+                        <span class="stat-label">Happy Patients</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="25" data-suffix="+">0</span>
+                        <span class="stat-label">Expert Doctors</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="12">0</span>
+                        <span class="stat-label">Specialties</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="7">0</span>
+                        <span class="stat-label">Years of Trust</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Booking -->
+    <section class="quick-booking" id="booking">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Get Started</span>
+                <h2 class="section-title">Ready to Book Your Appointment?</h2>
+                <p class="section-subtitle">Join thousands of satisfied patients who trust HealthPlus Clinic for their
+                    healthcare needs</p>
+            </div>
+            <div
+                style="display: flex; gap: var(--spacing-lg); justify-content: center; flex-wrap: wrap; margin-top: var(--spacing-xl);">
+                <div class="glass-card" style="padding: 2rem; text-align: center; max-width: 350px;">
+                    <i class="fas fa-calendar-check"
+                        style="font-size: 3rem; color: var(--accent-teal); margin-bottom: 1rem;"></i>
+                    <h3 style="margin-bottom: 0.5rem;">Book Appointment</h3>
+                    <p style="color: var(--text-slate); margin-bottom: 1.5rem;">Login to your patient account and
+                        schedule a visit with our expert doctors.</p>
+                    <a href="appointment.html" class="btn btn-primary btn-lg" style="width: 100%;">
+                        <i class="fas fa-calendar-check"></i> Book Now
+                    </a>
+                    <p style="font-size: 0.85rem; color: var(--text-slate); margin-top: 1rem;">
+                        New patient? <a href="patient-portal.html" style="color: var(--accent-teal);">Register here</a>
+                    </p>
+                </div>
+                <div class="glass-card" style="padding: 2rem; text-align: center; max-width: 350px;">
+                    <i class="fas fa-envelope"
+                        style="font-size: 3rem; color: var(--accent-coral); margin-bottom: 1rem;"></i>
+                    <h3 style="margin-bottom: 0.5rem;">Send Us a Message</h3>
+                    <p style="color: var(--text-slate); margin-bottom: 1.5rem;">Have questions? Reach out to us and
+                        we'll get back to you as soon as possible.</p>
+                    <a href="contact.html" class="btn btn-secondary btn-lg" style="width: 100%;">
+                        <i class="fas fa-paper-plane"></i> Contact Us
+                    </a>
+                    <p style="font-size: 0.85rem; color: var(--text-slate); margin-top: 1rem;">
+                        <i class="fas fa-phone"></i> Or call: <a href="tel:7052691142"
+                            style="color: var(--accent-teal);">+91-705-269-1142</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section" id="services">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Our Expertise</span>
+                <h2 class="section-title">Medical Services</h2>
+                <p class="section-subtitle">Comprehensive healthcare solutions for your entire family</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>General Medicine</h3>
+                    <p>Complete primary healthcare for common conditions, diabetes, hypertension, and preventive care.
+                    </p>
+                    <a href="services.html#general-medicine" class="btn btn-glass btn-sm">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-baby"></i>
+                    </div>
+                    <h3>Pediatrics</h3>
+                    <p>Expert care for infants, children, and adolescents including vaccinations and growth monitoring.
+                    </p>
+                    <a href="services.html#pediatrics" class="btn btn-glass btn-sm">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Cardiology</h3>
+                    <p>Advanced cardiac care with ECG, stress testing, and comprehensive heart disease management.</p>
+                    <a href="services.html#cardiology" class="btn btn-glass btn-sm">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-spa"></i>
+                    </div>
+                    <h3>Dermatology</h3>
+                    <p>Skin, hair, and nail treatments including acne, hair fall, and cosmetic procedures.</p>
+                    <a href="services.html#dermatology" class="btn btn-glass btn-sm">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-bone"></i>
+                    </div>
+                    <h3>Orthopedics</h3>
+                    <p>Joint replacement, fracture care, sports injuries, and musculoskeletal treatments.</p>
+                    <a href="services.html#orthopedics" class="btn btn-glass btn-sm">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Neurology</h3>
+                    <p>Diagnosis and treatment of neurological disorders including headaches, epilepsy, and stroke.</p>
+                    <a href="services.html#neurology" class="btn btn-glass btn-sm">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Ophthalmology</h3>
+                    <p>Complete eye care including vision testing, cataract surgery, and glaucoma treatment.</p>
+                    <a href="services.html#ophthalmology" class="btn btn-glass btn-sm">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tooth"></i>
+                    </div>
+                    <h3>Dentistry</h3>
+                    <p>Complete dental care from routine check-ups to braces, root canals, and implants.</p>
+                    <a href="services.html#dentistry" class="btn btn-glass btn-sm">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon" style="background: linear-gradient(135deg, #fb7185, #f43f5e);">
+                        <i class="fas fa-female"></i>
+                    </div>
+                    <h3>Gynecology</h3>
+                    <p>Women's health services including prenatal care, fertility treatments, and menstrual disorders.
+                    </p>
+                    <a href="services.html#gynecology" class="btn btn-glass btn-sm">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon" style="background: linear-gradient(135deg, #4f46e5, #4338ca);">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Psychiatry</h3>
+                    <p>Mental health services for anxiety, depression, stress management, and behavioral therapy.</p>
+                    <a href="services.html#psychiatry" class="btn btn-glass btn-sm">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon" style="background: linear-gradient(135deg, #14b8a6, #0d9488);">
+                        <i class="fas fa-ear-listen"></i>
+                    </div>
+                    <h3>ENT</h3>
+                    <p>Ear, nose, and throat care including hearing disorders, sinus treatment, and throat conditions.
+                    </p>
+                    <a href="services.html#ent" class="btn btn-glass btn-sm">Learn More</a>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                        <i class="fas fa-walking"></i>
+                    </div>
+                    <h3>Physiotherapy</h3>
+                    <p>Rehabilitation services for sports injuries, post-surgery recovery, and chronic pain management.
+                    </p>
+                    <a href="services.html#physiotherapy" class="btn btn-glass btn-sm">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Doctors Section -->
+    <section class="section" style="background: var(--primary-navy);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Expert Team</span>
+                <h2 class="section-title">Meet Our Doctors</h2>
+                <p class="section-subtitle">Experienced professionals dedicated to your wellbeing</p>
+            </div>
+            <div class="doctors-grid">
+                <div class="doctor-card">
+                    <div class="doctor-image">
+                        <i class="fas fa-user-md"></i>
+                        <span class="doctor-status available">Available</span>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Pawan Pandey</h3>
+                        <p class="doctor-specialty">General Medicine</p>
+                        <p class="doctor-meta">MBBS, MD | 15+ years exp.</p>
+                        <div class="doctor-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.8 (156 reviews)</span>
+                        </div>
+                        <a href="doctors.html#dr-pawan" class="btn btn-primary btn-sm">View Profile</a>
+                    </div>
+                </div>
+                <div class="doctor-card">
+                    <div class="doctor-image" style="background: linear-gradient(135deg, #a855f7, #6366f1);">
+                        <i class="fas fa-user-md"></i>
+                        <span class="doctor-status available">Available</span>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Anuradha</h3>
+                        <p class="doctor-specialty">Pediatrics</p>
+                        <p class="doctor-meta">MBBS, DCH, DNB | 12+ years exp.</p>
+                        <div class="doctor-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.9 (203 reviews)</span>
+                        </div>
+                        <a href="doctors.html#dr-anuradha" class="btn btn-primary btn-sm">View Profile</a>
+                    </div>
+                </div>
+                <div class="doctor-card">
+                    <div class="doctor-image" style="background: linear-gradient(135deg, #ff6b6b, #ee5a5a);">
+                        <i class="fas fa-user-md"></i>
+                        <span class="doctor-status busy">Busy</span>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Kaushal Kumar</h3>
+                        <p class="doctor-specialty">Cardiology</p>
+                        <p class="doctor-meta">MBBS, MD, DM | 18+ years exp.</p>
+                        <div class="doctor-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.7 (189 reviews)</span>
+                        </div>
+                        <a href="doctors.html#dr-kaushal" class="btn btn-primary btn-sm">View Profile</a>
+                    </div>
+                </div>
+                <div class="doctor-card">
+                    <div class="doctor-image" style="background: linear-gradient(135deg, #38ef7d, #11998e);">
+                        <i class="fas fa-user-md"></i>
+                        <span class="doctor-status available">Available</span>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Shahil Ansari</h3>
+                        <p class="doctor-specialty">Neurology</p>
+                        <p class="doctor-meta">MBBS, DM | 11+ years exp.</p>
+                        <div class="doctor-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>5.0 (98 reviews)</span>
+                        </div>
+                        <a href="doctors.html#dr-shahil" class="btn btn-primary btn-sm">View Profile</a>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: var(--spacing-xl);">
+                <a href="doctors.html" class="btn btn-secondary btn-lg">View All Doctors</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Testimonials</span>
+                <h2 class="section-title">What Our Patients Say</h2>
+                <p class="section-subtitle">Real experiences from real patients</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "Excellent service! Dr. Abhay and Dr. Anuradha were very attentive and explained everything
+                        clearly.
+                        The online booking system made it so convenient."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Anoop Chaudhary</h4>
+                            <p>Our First Patient since 2018</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "The pediatric care for my children is outstanding. Dr. Abhay is amazing with kids
+                        and the staff is very friendly and professional."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Aditya Kumar</h4>
+                            <p>Patient since 2019</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="testimonial-text">
+                        "Modern facilities, experienced doctors (Specially Dr. Abhay), and great patient care.
+                        The video consultation option is very helpful for follow-ups."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Shubham Prajapati</h4>
+                            <p>Patient since 2021</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section" style="background: var(--gradient-primary); text-align: center;">
+        <div class="container">
+            <h2 style="font-size: 2.5rem; margin-bottom: var(--spacing-sm);">Ready to Experience Better Healthcare?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: var(--spacing-lg); opacity: 0.9;">
+                Book your appointment today and let us take care of your health.
+            </p>
+            <div style="display: flex; gap: var(--spacing-md); justify-content: center; flex-wrap: wrap;">
+                <a href="appointment.html" class="btn btn-lg" style="background: white; color: var(--primary-dark);">
+                    <i class="fas fa-calendar-check"></i> Book Appointment
+                </a>
+                <a href="tel:7052691142" class="btn btn-lg" style="background: transparent; border: 2px solid white;">
+                    <i class="fas fa-phone"></i> Call: +91-705-269-1142
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3><i class="fas fa-heartbeat"></i> HealthPlus Clinic</h3>
+                    <p>Your Family's Health Partner providing comprehensive healthcare services since 2018.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="doctors.html">Our Doctors</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Patient Services</h4>
+                    <ul>
+                        <li><a href="patient-portal.html">Patient Portal</a></li>
+                        <li><a href="appointment.html">Book Appointment</a></li>
+                        <li><a href="doctor-portal.html">Doctor Portal</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Information</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Hariom Nagar Tiraha, Gorakhpur, U.P. - 273001</li>
+                        <li><i class="fas fa-phone"></i> +91-705-269-1142</li>
+                        <li><i class="fas fa-envelope"></i> info@healthplusclinic.com</li>
+                        <li><i class="fas fa-envelope"></i> yadav00007ab@gmail.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 8:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 HealthPlus Clinic. All Rights Reserved. |
+                    <a href="#">Privacy Policy</a> | <a href="#">Terms & Conditions</a>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

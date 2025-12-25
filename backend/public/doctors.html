@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Doctors - HealthPlus Clinic</title>
+    <meta name="description"
+        content="Meet our team of expert doctors at HealthPlus Clinic Gorakhpur. Book appointments with specialists.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-heartbeat"></i>
+                <span>HealthPlus</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="doctors.html" class="active">Doctors</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="patient-portal.html" class="btn btn-glass btn-sm">Patient Portal</a>
+                <a href="doctor-portal.html" class="btn btn-glass btn-sm">Doctor Portal</a>
+                <a href="appointment.html" class="btn btn-primary btn-sm">Book Now</a>
+            </div>
+            <div class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1><i class="fas fa-user-md"></i> Our Doctors</h1>
+            <p>Meet our team of expert healthcare professionals</p>
+        </div>
+    </header>
+
+    <!-- Doctors Section -->
+    <section class="section">
+        <div class="container">
+            <!-- Filter Buttons -->
+            <div
+                style="display: flex; flex-wrap: wrap; gap: var(--spacing-sm); justify-content: center; margin-bottom: var(--spacing-xl);">
+                <button class="btn btn-primary btn-sm filter-btn active" onclick="filterDoctors('all', event)">All
+                    Doctors</button>
+                <button class="btn btn-glass btn-sm filter-btn"
+                    onclick="filterDoctors('general-medicine', event)">General
+                    Medicine</button>
+                <button class="btn btn-glass btn-sm filter-btn"
+                    onclick="filterDoctors('pediatrics', event)">Pediatrics</button>
+                <button class="btn btn-glass btn-sm filter-btn"
+                    onclick="filterDoctors('cardiology', event)">Cardiology</button>
+                <button class="btn btn-glass btn-sm filter-btn"
+                    onclick="filterDoctors('dermatology', event)">Dermatology</button>
+                <button class="btn btn-glass btn-sm filter-btn"
+                    onclick="filterDoctors('orthopedics', event)">Orthopedics</button>
+                <button class="btn btn-glass btn-sm filter-btn"
+                    onclick="filterDoctors('gynecology', event)">Gynecology</button>
+                <button class="btn btn-glass btn-sm filter-btn"
+                    onclick="filterDoctors('neurology', event)">Neurology</button>
+                <button class="btn btn-glass btn-sm filter-btn" onclick="filterDoctors('ent', event)">ENT</button>
+            </div>
+
+            <div class="doctors-grid">
+                <!-- Dr. Pawan Pandey -->
+                <div class="doctor-card" id="dr-pawan" data-specialty="general-medicine">
+                    <div class="doctor-image">
+                        <i class="fas fa-user-md"></i>
+                        <span class="doctor-status available">Available</span>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Pawan Pandey</h3>
+                        <p class="doctor-specialty">General Medicine</p>
+                        <p class="doctor-meta">MBBS, MD (Medicine)</p>
+                        <p class="doctor-meta"><i class="fas fa-briefcase"></i> 15+ years experience</p>
+                        <div class="doctor-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.8 (156 reviews)</span>
+                        </div>
+                        <p style="color: var(--text-slate); font-size: 0.9rem; margin-bottom: var(--spacing-sm);">
+                            Specialist in diabetes, hypertension, thyroid disorders, and general health check-ups.
+                        </p>
+                        <div
+                            style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--spacing-sm);">
+                            <span><i class="fas fa-clock"></i> 10:00 AM - 2:00 PM</span>
+                            <span><i class="fas fa-rupee-sign"></i> 500</span>
+                        </div>
+                        <a href="appointment.html" class="btn btn-primary btn-sm" style="width: 100%;">Book
+                            Appointment</a>
+                    </div>
+                </div>
+
+                <!-- Dr. Anuradha -->
+                <div class="doctor-card" id="dr-anuradha" data-specialty="pediatrics">
+                    <div class="doctor-image" style="background: linear-gradient(135deg, #a855f7, #6366f1);">
+                        <i class="fas fa-user-md"></i>
+                        <span class="doctor-status available">Available</span>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Anuradha</h3>
+                        <p class="doctor-specialty">Pediatrics</p>
+                        <p class="doctor-meta">MBBS, DCH, DNB (Pediatrics)</p>
+                        <p class="doctor-meta"><i class="fas fa-briefcase"></i> 12+ years experience</p>
+                        <div class="doctor-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.9 (203 reviews)</span>
+                        </div>
+                        <p style="color: var(--text-slate); font-size: 0.9rem; margin-bottom: var(--spacing-sm);">
+                            Expert in newborn care, vaccinations, growth monitoring, and childhood developmental issues.
+                        </p>
+                        <div
+                            style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--spacing-sm);">
+                            <span><i class="fas fa-clock"></i> 11:00 AM - 3:00 PM</span>
+                            <span><i class="fas fa-rupee-sign"></i> 400</span>
+                        </div>
+                        <a href="appointment.html" class="btn btn-primary btn-sm" style="width: 100%;">Book
+                            Appointment</a>
+                    </div>
+                </div>
+
+                <!-- Dr. Kaushal Kumar -->
+                <div class="doctor-card" id="dr-kaushal" data-specialty="cardiology">
+                    <div class="doctor-image" style="background: linear-gradient(135deg, #ff6b6b, #ee5a5a);">
+                        <i class="fas fa-user-md"></i>
+                        <span class="doctor-status busy">Busy</span>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Kaushal Kumar</h3>
+                        <p class="doctor-specialty">Cardiology</p>
+                        <p class="doctor-meta">MBBS, MD, DM (Cardiology)</p>
+                        <p class="doctor-meta"><i class="fas fa-briefcase"></i> 18+ years experience</p>
+                        <div class="doctor-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.7 (189 reviews)</span>
+                        </div>
+                        <p style="color: var(--text-slate); font-size: 0.9rem; margin-bottom: var(--spacing-sm);">
+                            Specialist in ECG, stress testing, heart disease prevention, and cardiac rehabilitation.
+                        </p>
+                        <div
+                            style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--spacing-sm);">
+                            <span><i class="fas fa-clock"></i> 9:00 AM - 1:00 PM</span>
+                            <span><i class="fas fa-rupee-sign"></i> 800</span>
+                        </div>
+                        <a href="appointment.html" class="btn btn-primary btn-sm" style="width: 100%;">Book
+                            Appointment</a>
+                    </div>
+                </div>
+
+                <!-- Dr. Mudit Dubey -->
+                <div class="doctor-card" id="dr-mudit" data-specialty="dermatology">
+                    <div class="doctor-image" style="background: linear-gradient(135deg, #f472b6, #ec4899);">
+                        <i class="fas fa-user-md"></i>
+                        <span class="doctor-status available">Available</span>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Mudit Dubey</h3>
+                        <p class="doctor-specialty">Dermatology</p>
+                        <p class="doctor-meta">MBBS, MD (Dermatology)</p>
+                        <p class="doctor-meta"><i class="fas fa-briefcase"></i> 10+ years experience</p>
+                        <div class="doctor-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.9 (175 reviews)</span>
+                        </div>
+                        <p style="color: var(--text-slate); font-size: 0.9rem; margin-bottom: var(--spacing-sm);">
+                            Expert in acne treatment, hair fall, skin allergies, and cosmetic dermatology procedures.
+                        </p>
+                        <div
+                            style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--spacing-sm);">
+                            <span><i class="fas fa-clock"></i> 2:00 PM - 6:00 PM</span>
+                            <span><i class="fas fa-rupee-sign"></i> 600</span>
+                        </div>
+                        <a href="appointment.html" class="btn btn-primary btn-sm" style="width: 100%;">Book
+                            Appointment</a>
+                    </div>
+                </div>
+
+                <!-- Dr. Anupama Srivastva -->
+                <div class="doctor-card" id="dr-anupama" data-specialty="gynecology">
+                    <div class="doctor-image" style="background: linear-gradient(135deg, #fb7185, #f43f5e);">
+                        <i class="fas fa-user-md"></i>
+                        <span class="doctor-status available">Available</span>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Anupama Srivastva</h3>
+                        <p class="doctor-specialty">Gynecology</p>
+                        <p class="doctor-meta">MBBS, MS (Obstetrics & Gynecology)</p>
+                        <p class="doctor-meta"><i class="fas fa-briefcase"></i> 14+ years experience</p>
+                        <div class="doctor-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.8 (210 reviews)</span>
+                        </div>
+                        <p style="color: var(--text-slate); font-size: 0.9rem; margin-bottom: var(--spacing-sm);">
+                            Specialist in prenatal care, high-risk pregnancy, menstrual disorders, and women's health.
+                        </p>
+                        <div
+                            style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--spacing-sm);">
+                            <span><i class="fas fa-clock"></i> 10:00 AM - 2:00 PM</span>
+                            <span><i class="fas fa-rupee-sign"></i> 700</span>
+                        </div>
+                        <a href="appointment.html" class="btn btn-primary btn-sm" style="width: 100%;">Book
+                            Appointment</a>
+                    </div>
+                </div>
+
+                <!-- Dr. Nitesh Shukla -->
+                <div class="doctor-card" id="dr-nitesh-shukla" data-specialty="orthopedics">
+                    <div class="doctor-image" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                        <i class="fas fa-user-md"></i>
+                        <span class="doctor-status available">Available</span>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Nitesh Shukla</h3>
+                        <p class="doctor-specialty">Orthopedics</p>
+                        <p class="doctor-meta">MBBS, MS (Orthopedics)</p>
+                        <p class="doctor-meta"><i class="fas fa-briefcase"></i> 13+ years experience</p>
+                        <div class="doctor-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.7 (142 reviews)</span>
+                        </div>
+                        <p style="color: var(--text-slate); font-size: 0.9rem; margin-bottom: var(--spacing-sm);">
+                            Expert in joint replacement, fracture management, and sports injury rehabilitation.
+                        </p>
+                        <div
+                            style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--spacing-sm);">
+                            <span><i class="fas fa-clock"></i> 11:00 AM - 3:00 PM</span>
+                            <span><i class="fas fa-rupee-sign"></i> 650</span>
+                        </div>
+                        <a href="appointment.html" class="btn btn-primary btn-sm" style="width: 100%;">Book
+                            Appointment</a>
+                    </div>
+                </div>
+
+                <!-- Dr. Harishankar Tiwari -->
+                <div class="doctor-card" id="dr-harishankar" data-specialty="orthopedics">
+                    <div class="doctor-image" style="background: linear-gradient(135deg, #84cc16, #65a30d);">
+                        <i class="fas fa-user-md"></i>
+                        <span class="doctor-status busy">Busy</span>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Harishankar Tiwari</h3>
+                        <p class="doctor-specialty">Orthopedics</p>
+                        <p class="doctor-meta">MBBS, DNB (Orthopedics)</p>
+                        <p class="doctor-meta"><i class="fas fa-briefcase"></i> 16+ years experience</p>
+                        <div class="doctor-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.9 (198 reviews)</span>
+                        </div>
+                        <p style="color: var(--text-slate); font-size: 0.9rem; margin-bottom: var(--spacing-sm);">
+                            Specialist in spine disorders, arthritis treatment, and orthopedic rehabilitation.
+                        </p>
+                        <div
+                            style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--spacing-sm);">
+                            <span><i class="fas fa-clock"></i> 4:00 PM - 8:00 PM</span>
+                            <span><i class="fas fa-rupee-sign"></i> 700</span>
+                        </div>
+                        <a href="appointment.html" class="btn btn-primary btn-sm" style="width: 100%;">Book
+                            Appointment</a>
+                    </div>
+                </div>
+
+                <!-- Dr. Suraj Kumar Shukla -->
+                <div class="doctor-card" id="dr-suraj" data-specialty="dentistry">
+                    <div class="doctor-image" style="background: linear-gradient(135deg, #06b6d4, #0891b2);">
+                        <i class="fas fa-user-md"></i>
+                        <span class="doctor-status available">Available</span>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Suraj Kumar Shukla</h3>
+                        <p class="doctor-specialty">Dentistry</p>
+                        <p class="doctor-meta">BDS, MDS (Orthodontics)</p>
+                        <p class="doctor-meta"><i class="fas fa-briefcase"></i> 10+ years experience</p>
+                        <div class="doctor-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.8 (165 reviews)</span>
+                        </div>
+                        <p style="color: var(--text-slate); font-size: 0.9rem; margin-bottom: var(--spacing-sm);">
+                            Expert in braces, root canal treatment, dental implants, and cosmetic dentistry.
+                        </p>
+                        <div
+                            style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--spacing-sm);">
+                            <span><i class="fas fa-clock"></i> 10:00 AM - 6:00 PM</span>
+                            <span><i class="fas fa-rupee-sign"></i> 500</span>
+                        </div>
+                        <a href="appointment.html" class="btn btn-primary btn-sm" style="width: 100%;">Book
+                            Appointment</a>
+                    </div>
+                </div>
+
+                <!-- Dr. Rampal Maurya -->
+                <div class="doctor-card" id="dr-rampal" data-specialty="physiotherapy">
+                    <div class="doctor-image" style="background: linear-gradient(135deg, #8b5cf6, #7c3aed);">
+                        <i class="fas fa-user-md"></i>
+                        <span class="doctor-status available">Available</span>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Rampal Maurya</h3>
+                        <p class="doctor-specialty">Physiotherapy</p>
+                        <p class="doctor-meta">BPT, MPT (Sports Medicine)</p>
+                        <p class="doctor-meta"><i class="fas fa-briefcase"></i> 9+ years experience</p>
+                        <div class="doctor-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.6 (132 reviews)</span>
+                        </div>
+                        <p style="color: var(--text-slate); font-size: 0.9rem; margin-bottom: var(--spacing-sm);">
+                            Specialist in post-surgery rehabilitation, sports injuries, and geriatric physiotherapy.
+                        </p>
+                        <div
+                            style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--spacing-sm);">
+                            <span><i class="fas fa-clock"></i> 9:00 AM - 5:00 PM</span>
+                            <span><i class="fas fa-rupee-sign"></i> 400</span>
+                        </div>
+                        <a href="appointment.html" class="btn btn-primary btn-sm" style="width: 100%;">Book
+                            Appointment</a>
+                    </div>
+                </div>
+
+                <!-- Dr. Shahil Ansari -->
+                <div class="doctor-card" id="dr-shahil" data-specialty="neurology">
+                    <div class="doctor-image" style="background: linear-gradient(135deg, #38ef7d, #11998e);">
+                        <i class="fas fa-user-md"></i>
+                        <span class="doctor-status available">Available</span>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Shahil Ansari</h3>
+                        <p class="doctor-specialty">Neurology</p>
+                        <p class="doctor-meta">MBBS, DM (Neurology)</p>
+                        <p class="doctor-meta"><i class="fas fa-briefcase"></i> 11+ years experience</p>
+                        <div class="doctor-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>5.0 (98 reviews)</span>
+                        </div>
+                        <p style="color: var(--text-slate); font-size: 0.9rem; margin-bottom: var(--spacing-sm);">
+                            Expert in headache disorders, epilepsy, stroke management, and neurological conditions.
+                        </p>
+                        <div
+                            style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--spacing-sm);">
+                            <span><i class="fas fa-clock"></i> 11:00 AM - 4:00 PM</span>
+                            <span><i class="fas fa-rupee-sign"></i> 900</span>
+                        </div>
+                        <a href="appointment.html" class="btn btn-primary btn-sm" style="width: 100%;">Book
+                            Appointment</a>
+                    </div>
+                </div>
+
+                <!-- Dr. Nitesh Kumar -->
+                <div class="doctor-card" id="dr-nitesh-kumar" data-specialty="ophthalmology">
+                    <div class="doctor-image" style="background: linear-gradient(135deg, #3b82f6, #2563eb);">
+                        <i class="fas fa-user-md"></i>
+                        <span class="doctor-status available">Available</span>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Nitesh Kumar</h3>
+                        <p class="doctor-specialty">Ophthalmology</p>
+                        <p class="doctor-meta">MBBS, MS (Ophthalmology)</p>
+                        <p class="doctor-meta"><i class="fas fa-briefcase"></i> 12+ years experience</p>
+                        <div class="doctor-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.8 (145 reviews)</span>
+                        </div>
+                        <p style="color: var(--text-slate); font-size: 0.9rem; margin-bottom: var(--spacing-sm);">
+                            Specialist in cataract surgery, glaucoma treatment, and comprehensive eye care.
+                        </p>
+                        <div
+                            style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--spacing-sm);">
+                            <span><i class="fas fa-clock"></i> 10:00 AM - 3:00 PM</span>
+                            <span><i class="fas fa-rupee-sign"></i> 600</span>
+                        </div>
+                        <a href="appointment.html" class="btn btn-primary btn-sm" style="width: 100%;">Book
+                            Appointment</a>
+                    </div>
+                </div>
+
+                <!-- Dr. Abhay Yadav -->
+                <div class="doctor-card" id="dr-abhay" data-specialty="psychiatry">
+                    <div class="doctor-image" style="background: linear-gradient(135deg, #4f46e5, #4338ca);">
+                        <i class="fas fa-user-md"></i>
+                        <span class="doctor-status available">Available</span>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Abhay Yadav</h3>
+                        <p class="doctor-specialty">Psychiatry</p>
+                        <p class="doctor-meta">MBBS, MD (Psychiatry)</p>
+                        <p class="doctor-meta"><i class="fas fa-briefcase"></i> 8+ years experience</p>
+                        <div class="doctor-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <span>4.9 (89 reviews)</span>
+                        </div>
+                        <p style="color: var(--text-slate); font-size: 0.9rem; margin-bottom: var(--spacing-sm);">
+                            Expert in anxiety, depression, stress management, and behavioral therapy counseling.
+                        </p>
+                        <div
+                            style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--spacing-sm);">
+                            <span><i class="fas fa-clock"></i> 4:00 PM - 8:00 PM</span>
+                            <span><i class="fas fa-rupee-sign"></i> 800</span>
+                        </div>
+                        <a href="appointment.html" class="btn btn-primary btn-sm" style="width: 100%;">Book
+                            Appointment</a>
+                    </div>
+                </div>
+
+                <!-- Dr. Dipoo Saini -->
+                <div class="doctor-card" id="dr-dipoo" data-specialty="ent">
+                    <div class="doctor-image" style="background: linear-gradient(135deg, #14b8a6, #0d9488);">
+                        <i class="fas fa-user-md"></i>
+                        <span class="doctor-status available">Available</span>
+                    </div>
+                    <div class="doctor-info">
+                        <h3>Dr. Dipoo Saini</h3>
+                        <p class="doctor-specialty">ENT</p>
+                        <p class="doctor-meta">MBBS, MS (ENT)</p>
+                        <p class="doctor-meta"><i class="fas fa-briefcase"></i> 10+ years experience</p>
+                        <div class="doctor-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                            <span>4.7 (156 reviews)</span>
+                        </div>
+                        <p style="color: var(--text-slate); font-size: 0.9rem; margin-bottom: var(--spacing-sm);">
+                            Specialist in hearing disorders, sinus treatment, throat conditions, and ENT surgeries.
+                        </p>
+                        <div
+                            style="display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-muted); margin-bottom: var(--spacing-sm);">
+                            <span><i class="fas fa-clock"></i> 10:00 AM - 2:00 PM</span>
+                            <span><i class="fas fa-rupee-sign"></i> 550</span>
+                        </div>
+                        <a href="appointment.html" class="btn btn-primary btn-sm" style="width: 100%;">Book
+                            Appointment</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3><i class="fas fa-heartbeat"></i> HealthPlus Clinic</h3>
+                    <p>Your Family's Health Partner providing comprehensive healthcare services since 2018.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="doctors.html">Our Doctors</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Patient Services</h4>
+                    <ul>
+                        <li><a href="patient-portal.html">Patient Portal</a></li>
+                        <li><a href="appointment.html">Book Appointment</a></li>
+                        <li><a href="doctor-portal.html">Doctor Portal</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Information</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Hariom Nagar Tiraha, Gorakhpur, U.P. - 273001</li>
+                        <li><i class="fas fa-phone"></i> +91-705-269-1142</li>
+                        <li><i class="fas fa-envelope"></i> info@healthplusclinic.com</li>
+                        <li><i class="fas fa-envelope"></i> yadav00007ab@gmail.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 8:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 HealthPlus Clinic. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

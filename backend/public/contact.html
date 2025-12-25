@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - HealthPlus Clinic</title>
+    <meta name="description"
+        content="Contact HealthPlus Clinic Gorakhpur. Get in touch with us for appointments, inquiries, and emergency services.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-heartbeat"></i>
+                <span>HealthPlus</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="doctors.html">Doctors</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="patient-portal.html" class="btn btn-glass btn-sm">Patient Portal</a>
+                <a href="doctor-portal.html" class="btn btn-glass btn-sm">Doctor Portal</a>
+                <a href="appointment.html" class="btn btn-primary btn-sm">Book Now</a>
+            </div>
+            <div class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1><i class="fas fa-envelope"></i> Contact Us</h1>
+            <p>We're here to help you with any questions or concerns</p>
+        </div>
+    </header>
+
+    <!-- Contact Section -->
+    <section class="section">
+        <div class="container">
+            <div
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--spacing-xl);">
+                <!-- Contact Info -->
+                <div>
+                    <h2 style="margin-bottom: var(--spacing-lg);">Get In Touch</h2>
+
+                    <!-- Phone -->
+                    <div class="glass-card" style="margin-bottom: var(--spacing-md);">
+                        <div style="display: flex; align-items: center; gap: var(--spacing-md);">
+                            <div
+                                style="width: 50px; height: 50px; background: var(--gradient-teal); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-phone" style="color: var(--primary-dark); font-size: 1.2rem;"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin-bottom: 0.2rem;">Phone</h4>
+                                <p style="color: var(--text-slate); margin: 0;">+91-705-269-1142</p>
+                                <p style="color: var(--accent-coral); margin: 0; font-size: 0.9rem;">Emergency:
+                                    +91-730-912-5345</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="glass-card" style="margin-bottom: var(--spacing-md);">
+                        <div style="display: flex; align-items: center; gap: var(--spacing-md);">
+                            <div
+                                style="width: 50px; height: 50px; background: linear-gradient(135deg, #a855f7, #6366f1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-envelope" style="color: white; font-size: 1.2rem;"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin-bottom: 0.2rem;">Email</h4>
+                                <p style="color: var(--text-slate); margin: 0;">info@healthplusclinic.com</p>
+                                <p style="color: var(--text-slate); margin: 0;">yadav00007ab@gmail.com</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Address -->
+                    <div class="glass-card" style="margin-bottom: var(--spacing-md);">
+                        <div style="display: flex; align-items: center; gap: var(--spacing-md);">
+                            <div
+                                style="width: 50px; height: 50px; background: linear-gradient(135deg, #ff6b6b, #ee5a5a); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-map-marker-alt" style="color: white; font-size: 1.2rem;"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin-bottom: 0.2rem;">Address</h4>
+                                <p style="color: var(--text-slate); margin: 0;">Hariom Nagar Tiraha</p>
+                                <p style="color: var(--text-slate); margin: 0;">Gorakhpur, U.P. - 273001</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hours -->
+                    <div class="glass-card">
+                        <div style="display: flex; align-items: center; gap: var(--spacing-md);">
+                            <div
+                                style="width: 50px; height: 50px; background: linear-gradient(135deg, #38ef7d, #11998e); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                                <i class="fas fa-clock" style="color: var(--primary-dark); font-size: 1.2rem;"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin-bottom: 0.2rem;">Working Hours</h4>
+                                <p style="color: var(--text-slate); margin: 0;">Monday - Saturday: 9:00 AM - 8:00 PM</p>
+                                <p style="color: var(--text-slate); margin: 0;">Sunday: 10:00 AM - 2:00 PM (Emergency)
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div>
+                    <div class="portal-card">
+                        <h2><i class="fas fa-paper-plane"></i> Send Us a Message</h2>
+                        <form id="contactForm" style="margin-top: var(--spacing-lg);">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="contactName"><i class="fas fa-user"></i> Your Name</label>
+                                    <input type="text" id="contactName" placeholder="Enter your name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="contactPhone"><i class="fas fa-phone"></i> Phone Number</label>
+                                    <input type="tel" id="contactPhone" placeholder="Enter your phone" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactEmail"><i class="fas fa-envelope"></i> Email Address</label>
+                                <input type="email" id="contactEmail" placeholder="Enter your email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactSubject"><i class="fas fa-tag"></i> Subject</label>
+                                <select id="contactSubject" required>
+                                    <option value="">Select subject</option>
+                                    <option value="general">General Inquiry</option>
+                                    <option value="appointment">Appointment Related</option>
+                                    <option value="feedback">Feedback</option>
+                                    <option value="complaint">Complaint</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="contactMessage"><i class="fas fa-comment"></i> Your Message</label>
+                                <textarea id="contactMessage" rows="5" placeholder="Write your message here..."
+                                    required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-lg" style="width: 100%;">
+                                <i class="fas fa-paper-plane"></i> Send Message
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Actions -->
+    <section class="section" style="background: var(--primary-navy);">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Quick Actions</span>
+                <h2 class="section-title">Need Immediate Help?</h2>
+            </div>
+            <div class="dashboard-grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                <a href="appointment.html" class="dashboard-card" style="text-decoration: none;">
+                    <i class="fas fa-calendar-check"></i>
+                    <h3>Book Appointment</h3>
+                    <p style="color: var(--text-slate);">Schedule your visit online</p>
+                </a>
+                <a href="tel:7052691142" class="dashboard-card highlight" style="text-decoration: none;">
+                    <i class="fas fa-phone-alt"></i>
+                    <h3>Call Now</h3>
+                    <p>+91-705-269-1142</p>
+                </a>
+                <a href="tel:7309125345" class="dashboard-card"
+                    style="text-decoration: none; background: var(--gradient-coral);">
+                    <i class="fas fa-ambulance" style="color: white;"></i>
+                    <h3 style="color: white;">Emergency</h3>
+                    <p style="color: rgba(255,255,255,0.9);">+91-730-912-5345</p>
+                </a>
+                <a href="patient-portal.html" class="dashboard-card" style="text-decoration: none;">
+                    <i class="fas fa-user"></i>
+                    <h3>Patient Portal</h3>
+                    <p style="color: var(--text-slate);">Access your records</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Location</span>
+                <h2 class="section-title">Find Us Here</h2>
+            </div>
+            <div class="portal-card" style="text-align: center;">
+                <div
+                    style="background: var(--glass-bg); border-radius: var(--radius-md); padding: var(--spacing-xl); border: 1px solid var(--glass-border);">
+                    <i class="fas fa-map-marked-alt"
+                        style="font-size: 4rem; color: var(--accent-teal); margin-bottom: var(--spacing-md);"></i>
+                    <h3 style="margin-bottom: var(--spacing-sm);">HealthPlus Clinic</h3>
+                    <p style="color: var(--text-slate); margin-bottom: var(--spacing-md);">
+                        Hariom Nagar Tiraha, Gorakhpur, Uttar Pradesh - 273001
+                    </p>
+                    <a href="https://maps.google.com/?q=Hariom+Nagar+Tiraha+Gorakhpur" target="_blank"
+                        class="btn btn-primary">
+                        <i class="fas fa-directions"></i> Get Directions
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3><i class="fas fa-heartbeat"></i> HealthPlus Clinic</h3>
+                    <p>Your Family's Health Partner providing comprehensive healthcare services since 2018.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="doctors.html">Our Doctors</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Patient Services</h4>
+                    <ul>
+                        <li><a href="patient-portal.html">Patient Portal</a></li>
+                        <li><a href="appointment.html">Book Appointment</a></li>
+                        <li><a href="doctor-portal.html">Doctor Portal</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Information</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Hariom Nagar Tiraha, Gorakhpur, U.P. - 273001</li>
+                        <li><i class="fas fa-phone"></i> +91-705-269-1142</li>
+                        <li><i class="fas fa-envelope"></i> info@healthplusclinic.com</li>
+                        <li><i class="fas fa-envelope"></i> yadav00007ab@gmail.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Sat: 9:00 AM - 8:00 PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 HealthPlus Clinic. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Contact Form Backend Integration
+        document.getElementById('contactForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const btn = this.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            btn.disabled = true;
+
+            const formData = {
+                name: document.getElementById('contactName').value,
+                phone: document.getElementById('contactPhone').value,
+                email: document.getElementById('contactEmail').value,
+                subject: document.getElementById('contactSubject').value,
+                message: document.getElementById('contactMessage').value
+            };
+
+            try {
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert('Message sent successfully! We will get back to you soon.');
+                    this.reset();
+                } else {
+                    alert('Error: ' + (result.error || 'Failed to send message'));
+                }
+            } catch (error) {
+                alert('Connection error! Please make sure the backend server is running.');
+                console.error('Error:', error);
+            }
+
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+        });
+    </script>
+</body>
+
+</html>

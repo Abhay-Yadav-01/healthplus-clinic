@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard - HealthPlus Clinic</title>
+    <meta name="description"
+        content="Patient Dashboard - Manage your appointments and health records at HealthPlus Clinic.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-heartbeat"></i>
+                <span>HealthPlus</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="patient-dashboard.html" class="active">Dashboard</a></li>
+                <li><a href="appointment.html">Book Appointment</a></li>
+                <li><a href="doctors.html">Doctors</a></li>
+                <li><a href="services.html">Services</a></li>
+            </ul>
+            <div class="nav-cta">
+                <span style="color: var(--text-slate); margin-right: var(--spacing-sm);">
+                    <i class="fas fa-user-circle"></i> Welcome, <span id="navUserName">Patient</span>
+                </span>
+                <button class="btn btn-danger btn-sm" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+            <div class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1><i class="fas fa-tachometer-alt"></i> Patient Dashboard</h1>
+            <p>Welcome back, <span id="headerUserName">Patient</span>!</p>
+        </div>
+    </header>
+
+    <!-- Dashboard Content -->
+    <section class="section">
+        <div class="container">
+            <!-- Quick Stats -->
+            <div class="dashboard-grid" style="margin-bottom: var(--spacing-xl);">
+                <div class="dashboard-card highlight">
+                    <i class="fas fa-calendar-check"></i>
+                    <h3>My Appointments</h3>
+                    <div class="value" id="appointmentCount">0</div>
+                </div>
+                <div class="dashboard-card">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email</h3>
+                    <div class="value" id="userEmail" style="font-size: 0.9rem;">-</div>
+                </div>
+                <div class="dashboard-card">
+                    <i class="fas fa-phone"></i>
+                    <h3>Phone</h3>
+                    <div class="value" id="userPhone" style="font-size: 1rem;">-</div>
+                </div>
+                <div class="dashboard-card">
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Account Status</h3>
+                    <div class="value" style="color: var(--accent-teal);">Verified</div>
+                </div>
+            </div>
+
+            <!-- My Appointments -->
+            <div class="portal-card" style="margin-bottom: var(--spacing-xl);">
+                <h2><i class="fas fa-calendar-alt"></i> My Appointments</h2>
+                <div class="table-wrapper" style="margin-top: var(--spacing-md);">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                                <th>Doctor</th>
+                                <th>Department</th>
+                                <th>Type</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="appointmentsTableBody">
+                            <tr>
+                                <td colspan="7" style="text-align: center; padding: 2rem;">
+                                    <i class="fas fa-spinner fa-spin"></i> Loading appointments...
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div style="margin-top: var(--spacing-md);">
+                    <a href="appointment.html" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Book New Appointment
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div>
+                <h2 style="margin-bottom: var(--spacing-md);"><i class="fas fa-bolt"
+                        style="color: var(--accent-teal);"></i> Quick Actions</h2>
+                <div class="dashboard-grid">
+                    <a href="appointment.html" class="dashboard-card" style="text-decoration: none;">
+                        <i class="fas fa-calendar-plus"></i>
+                        <h3>Book Appointment</h3>
+                    </a>
+                    <a href="doctors.html" class="dashboard-card" style="text-decoration: none;">
+                        <i class="fas fa-user-md"></i>
+                        <h3>Find a Doctor</h3>
+                    </a>
+                    <a href="services.html" class="dashboard-card" style="text-decoration: none;">
+                        <i class="fas fa-hospital"></i>
+                        <h3>Our Services</h3>
+                    </a>
+                    <a href="contact.html" class="dashboard-card" style="text-decoration: none;">
+                        <i class="fas fa-headset"></i>
+                        <h3>Get Support</h3>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>&copy; 2025 HealthPlus Clinic. All Rights Reserved. |
+                    <a href="#">Privacy Policy</a> |
+                    <i class="fas fa-envelope"></i> info@healthplusclinic.com, yadav00007ab@gmail.com
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Check if user is logged in
+        const token = localStorage.getItem('patientToken');
+        const user = JSON.parse(localStorage.getItem('patientUser') || 'null');
+
+        if (!token || !user) {
+            alert('Please login first!');
+            window.location.href = 'patient-portal.html';
+        }
+
+        // Display user info
+        document.getElementById('navUserName').textContent = user.firstName;
+        document.getElementById('headerUserName').textContent = user.firstName + ' ' + user.lastName;
+        document.getElementById('userEmail').textContent = user.email;
+        document.getElementById('userPhone').textContent = user.phone;
+
+        // Load appointments
+        async function loadMyAppointments() {
+            try {
+                const response = await fetch('/api/my-appointments', {
+                    headers: {
+                        'Authorization': 'Bearer ' + token
+                    }
+                });
+
+                const appointments = await response.json();
+                const tbody = document.getElementById('appointmentsTableBody');
+
+                if (appointments.length === 0) {
+                    tbody.innerHTML = `
+                        <tr>
+                            <td colspan="7" style="text-align: center; padding: 2rem; color: var(--text-slate);">
+                                <i class="fas fa-calendar-times" style="font-size: 2rem; margin-bottom: 0.5rem; display: block;"></i>
+                                No appointments found. Book your first appointment!
+                            </td>
+                        </tr>
+                    `;
+                    document.getElementById('appointmentCount').textContent = '0';
+                    return;
+                }
+
+                document.getElementById('appointmentCount').textContent = appointments.length;
+
+                tbody.innerHTML = appointments.map(apt => `
+                    <tr>
+                        <td>#${apt.id}</td>
+                        <td>${apt.appointment_date}</td>
+                        <td>${apt.appointment_time}</td>
+                        <td>${apt.doctor}</td>
+                        <td>${apt.department}</td>
+                        <td>${apt.consultation_type}</td>
+                        <td><span class="status status-${apt.status === 'confirmed' ? 'confirmed' : 'pending'}">${apt.status || 'Pending'}</span></td>
+                    </tr>
+                `).join('');
+            } catch (error) {
+                console.error('Error loading appointments:', error);
+                document.getElementById('appointmentsTableBody').innerHTML = `
+                    <tr>
+                        <td colspan="7" style="text-align: center; padding: 2rem; color: var(--accent-coral);">
+                            Failed to load appointments. Please refresh the page.
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('patientToken');
+            localStorage.removeItem('patientUser');
+            window.location.href = 'patient-portal.html';
+        }
+
+        // Load data on page load
+        loadMyAppointments();
+    </script>
+</body>
+
+</html>

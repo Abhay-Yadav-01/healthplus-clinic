@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment - HealthPlus Clinic</title>
+    <meta name="description"
+        content="Book your appointment at HealthPlus Clinic Gorakhpur. Schedule visits with our expert doctors online.">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .login-required-box {
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid var(--accent-coral);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            text-align: center;
+            max-width: 500px;
+            margin: 2rem auto;
+        }
+
+        .login-required-box i {
+            font-size: 3rem;
+            color: var(--accent-coral);
+            margin-bottom: 1rem;
+        }
+
+        .login-required-box h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .login-required-box p {
+            color: var(--text-slate);
+            margin-bottom: 1.5rem;
+        }
+
+        .user-info-bar {
+            background: rgba(100, 255, 218, 0.1);
+            border: 1px solid var(--accent-teal);
+            border-radius: var(--radius-md);
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .user-info-bar .user-name {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-teal);
+            font-weight: 600;
+        }
+
+        .user-info-bar .logout-btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <i class="fas fa-heartbeat"></i>
+                <span>HealthPlus</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="doctors.html">Doctors</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-cta">
+                <a href="patient-portal.html" class="btn btn-glass btn-sm">Patient Portal</a>
+                <a href="doctor-portal.html" class="btn btn-glass btn-sm">Doctor Portal</a>
+                <a href="appointment.html" class="btn btn-primary btn-sm">Book Now</a>
+            </div>
+            <div class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <h1><i class="fas fa-calendar-check"></i> Book Appointment</h1>
+            <p>Schedule your visit with our expert doctors</p>
+        </div>
+    </header>
+
+    <!-- Login Required Message (shown if not logged in) -->
+    <section id="loginRequiredSection" class="section" style="display: none;">
+        <div class="container">
+            <div class="login-required-box">
+                <i class="fas fa-lock"></i>
+                <h3>Login Required</h3>
+                <p>To book an appointment, you need to be logged in as a registered patient. This helps us prevent fake
+                    bookings and provide better service.</p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <a href="patient-portal.html" class="btn btn-primary">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                    <a href="patient-portal.html#register" class="btn btn-secondary"
+                        onclick="sessionStorage.setItem('showRegister', 'true')">
+                        <i class="fas fa-user-plus"></i> Register
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Appointment Form Section (shown if logged in) -->
+    <section id="appointmentSection" class="section" style="display: none;">
+        <div class="container">
+            <div class="booking-form" style="max-width: 800px; margin: 0 auto;">
+                <!-- User Info Bar -->
+                <div class="user-info-bar">
+                    <div class="user-name">
+                        <i class="fas fa-user-circle"></i>
+                        <span>Welcome, <span id="userName">Patient</span></span>
+                    </div>
+                    <button class="btn btn-glass logout-btn" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </button>
+                </div>
+
+                <h2 style="text-align: center; margin-bottom: var(--spacing-lg);">
+                    <i class="fas fa-notes-medical" style="color: var(--accent-teal);"></i> Appointment Details
+                </h2>
+
+                <form id="detailedBookingForm">
+                    <!-- Appointment Preferences -->
+                    <h3
+                        style="color: var(--accent-teal); margin-bottom: var(--spacing-md); padding-bottom: var(--spacing-xs); border-bottom: 2px solid var(--glass-border);">
+                        <i class="fas fa-calendar-alt"></i> Appointment Preferences
+                    </h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="department"><i class="fas fa-hospital-user"></i> Department</label>
+                            <select id="department" required>
+                                <option value="">Choose Department</option>
+                                <option value="General Medicine">General Medicine</option>
+                                <option value="Pediatrics">Pediatrics</option>
+                                <option value="Cardiology">Cardiology</option>
+                                <option value="Dermatology">Dermatology</option>
+                                <option value="Orthopedics">Orthopedics</option>
+                                <option value="Gynecology">Gynecology</option>
+                                <option value="Dentistry">Dentistry</option>
+                                <option value="Physiotherapy">Physiotherapy</option>
+                                <option value="Neurology">Neurology</option>
+                                <option value="Ophthalmology">Ophthalmology</option>
+                                <option value="Psychiatry">Psychiatry</option>
+                                <option value="ENT">ENT</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="doctor"><i class="fas fa-user-md"></i> Preferred Doctor</label>
+                            <select id="doctor" required>
+                                <option value="">Choose Doctor</option>
+                                <option value="Dr. Pawan Pandey">Dr. Pawan Pandey - General Medicine</option>
+                                <option value="Dr. Anuradha">Dr. Anuradha - Pediatrics</option>
+                                <option value="Dr. Kaushal Kumar">Dr. Kaushal Kumar - Cardiology</option>
+                                <option value="Dr. Mudit Dubey">Dr. Mudit Dubey - Dermatology</option>
+                                <option value="Dr. Anupama Srivastva">Dr. Anupama Srivastva - Gynecology</option>
+                                <option value="Dr. Nitesh Shukla">Dr. Nitesh Shukla - Orthopedics</option>
+                                <option value="Dr. Harishankar Tiwari">Dr. Harishankar Tiwari - Orthopedics</option>
+                                <option value="Dr. Suraj Kumar Shukla">Dr. Suraj Kumar Shukla - Dentistry</option>
+                                <option value="Dr. Rampal Maurya">Dr. Rampal Maurya - Physiotherapy</option>
+                                <option value="Dr. Shahil Ansari">Dr. Shahil Ansari - Neurology</option>
+                                <option value="Dr. Nitesh Kumar">Dr. Nitesh Kumar - Ophthalmology</option>
+                                <option value="Dr. Abhay Yadav">Dr. Abhay Yadav - Psychiatry</option>
+                                <option value="Dr. Dipoo Saini">Dr. Dipoo Saini - ENT</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="appointmentDate"><i class="fas fa-calendar"></i> Preferred Date</label>
+                            <input type="date" id="appointmentDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="appointmentTime"><i class="fas fa-clock"></i> Preferred Time</label>
+                            <select id="appointmentTime" required>
+                                <option value="">Choose time slot</option>
+                                <option value="09:00 AM">09:00 AM</option>
+                                <option value="10:00 AM">10:00 AM</option>
+                                <option value="11:00 AM">11:00 AM</option>
+                                <option value="12:00 PM">12:00 PM</option>
+                                <option value="02:00 PM">02:00 PM</option>
+                                <option value="03:00 PM">03:00 PM</option>
+                                <option value="04:00 PM">04:00 PM</option>
+                                <option value="05:00 PM">05:00 PM</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="consultationType"><i class="fas fa-video"></i> Consultation Type</label>
+                        <select id="consultationType" required>
+                            <option value="">Select Type</option>
+                            <option value="In-Person">In-Person Visit</option>
+                            <option value="Video">Video Consultation</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="symptoms"><i class="fas fa-notes-medical"></i> Reason for Visit / Symptoms</label>
+                        <textarea id="symptoms" rows="4"
+                            placeholder="Briefly describe your symptoms or reason for visit"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-lg"
+                        style="width: 100%; margin-top: var(--spacing-md);">
+                        <i class="fas fa-check-circle"></i> Confirm Booking
+                    </button>
+                </form>
+
+                <div
+                    style="text-align: center; margin-top: var(--spacing-lg); padding-top: var(--spacing-md); border-top: 1px solid var(--glass-border);">
+                    <p style="color: var(--text-slate);">
+                        Need immediate assistance? Call us at
+                        <a href="tel:7052691142" style="color: var(--accent-teal);">+91-705-269-1142</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3><i class="fas fa-heartbeat"></i> HealthPlus Clinic</h3>
+                    <p>Your Family's Health Partner providing comprehensive healthcare services since 2018.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="doctors.html">Our Doctors</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Patient Services</h4>
+                    <ul>
+                        <li><a href="patient-portal.html">Patient Portal</a></li>
+                        <li><a href="appointment.html">Book Appointment</a></li>
+                        <li><a href="doctor-portal.html">Doctor Portal</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Information</h4>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Hariom Nagar Tiraha, Gorakhpur, U.P. - 273001</li>
+                        <li><i class="fas fa-phone"></i> +91-705-269-1142</li>
+                        <li><i class="fas fa-envelope"></i> info@healthplusclinic.com</li>
+                        <li><i class="fas fa-envelope"></i> yadav00007ab@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 HealthPlus Clinic. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Check if user is logged in
+        function checkAuth() {
+            const token = localStorage.getItem('patientToken');
+            const user = JSON.parse(localStorage.getItem('patientUser') || 'null');
+
+            if (token && user) {
+                // User is logged in - show booking form
+                document.getElementById('loginRequiredSection').style.display = 'none';
+                document.getElementById('appointmentSection').style.display = 'block';
+                document.getElementById('userName').textContent = user.firstName + ' ' + user.lastName;
+            } else {
+                // User not logged in - show login required message
+                document.getElementById('loginRequiredSection').style.display = 'block';
+                document.getElementById('appointmentSection').style.display = 'none';
+            }
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('patientToken');
+            localStorage.removeItem('patientUser');
+            checkAuth();
+        }
+
+        // Run auth check on page load
+        checkAuth();
+
+        // Appointment Form Backend Integration
+        document.getElementById('detailedBookingForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            const token = localStorage.getItem('patientToken');
+            if (!token) {
+                alert('Please login first!');
+                window.location.href = 'patient-portal.html';
+                return;
+            }
+
+            const btn = this.querySelector('button[type="submit"]');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Booking...';
+            btn.disabled = true;
+
+            const formData = {
+                department: document.getElementById('department').value,
+                doctor: document.getElementById('doctor').value,
+                appointmentDate: document.getElementById('appointmentDate').value,
+                appointmentTime: document.getElementById('appointmentTime').value,
+                consultationType: document.getElementById('consultationType').value,
+                symptoms: document.getElementById('symptoms').value
+            };
+
+            try {
+                const response = await fetch('/api/appointments', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + token
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const result = await response.json();
+
+                if (result.success) {
+                    alert('Appointment booked successfully! We will confirm shortly.');
+                    this.reset();
+                } else {
+                    if (result.error && result.error.includes('Authentication')) {
+                        alert('Session expired. Please login again.');
+                        logout();
+                    } else {
+                        alert('Error: ' + (result.error || 'Failed to book appointment'));
+                    }
+                }
+            } catch (error) {
+                alert('Connection error! Please try again.');
+                console.error('Error:', error);
+            }
+
+            btn.innerHTML = originalText;
+            btn.disabled = false;
+        });
+
+        // Set minimum date to today
+        document.getElementById('appointmentDate').min = new Date().toISOString().split('T')[0];
+    </script>
+</body>
+
+</html>
