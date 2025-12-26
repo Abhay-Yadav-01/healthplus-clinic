@@ -170,6 +170,9 @@
 
     <script src="script.js"></script>
     <script>
+        // Clear any stale doctor session on page load
+        // (Only keep if coming back, not fresh login)
+
         // Doctor Login Form
         document.getElementById('doctorLoginForm').addEventListener('submit', async function (e) {
             e.preventDefault();
@@ -180,9 +183,13 @@
             btn.disabled = true;
 
             const formData = {
-                email: document.getElementById('doctorEmail').value,
+                email: document.getElementById('doctorEmail').value.trim().toLowerCase(),
                 password: document.getElementById('doctorPassword').value
             };
+
+            // Clear any old session data before attempting login
+            localStorage.removeItem('doctorToken');
+            localStorage.removeItem('doctorUser');
 
             try {
                 const response = await fetch('/api/doctors/login', {
@@ -193,21 +200,24 @@
 
                 const result = await response.json();
 
-                if (result.success) {
+                if (response.ok && result.success) {
                     localStorage.setItem('doctorToken', result.token);
                     localStorage.setItem('doctorUser', JSON.stringify(result.user));
                     alert('Login successful! Welcome, ' + result.user.name);
                     window.location.href = 'doctor-dashboard.html';
                 } else {
-                    alert('Error: ' + (result.error || 'Invalid credentials'));
+                    alert('Login Failed: ' + (result.error || 'Invalid email or password'));
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                    return; // Stop execution here
                 }
             } catch (error) {
-                alert('Connection error! Please make sure the backend server is running.');
+                alert('Connection error! Please check your internet connection or try again later.');
                 console.error('Error:', error);
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                return; // Stop execution here
             }
-
-            btn.innerHTML = originalText;
-            btn.disabled = false;
         });
     </script>
 </body>

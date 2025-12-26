@@ -154,29 +154,33 @@
 
     <script src="script.js"></script>
     <script>
-        // Check if logged in
+        // Check if logged in - MUST have valid token and user data
         const doctorToken = localStorage.getItem('doctorToken');
-        const doctorUser = JSON.parse(localStorage.getItem('doctorUser') || '{}');
+        const doctorUser = JSON.parse(localStorage.getItem('doctorUser') || 'null');
 
-        if (!doctorToken || !doctorUser.name) {
+        // Immediately redirect if not logged in
+        if (!doctorToken || !doctorUser || !doctorUser.name || !doctorUser.id) {
+            localStorage.removeItem('doctorToken');
+            localStorage.removeItem('doctorUser');
             alert('Please login first');
-            window.location.href = 'doctor-portal.html';
+            window.location.replace('doctor-portal.html');
+            throw new Error('Not authenticated'); // Stop script execution
         }
 
         // Set doctor info in header
-        document.getElementById('doctorNameHeader').innerHTML = 
+        document.getElementById('doctorNameHeader').innerHTML =
             `<i class="fas fa-user-md"></i> ${doctorUser.name}`;
-        document.getElementById('welcomeMessage').textContent = 
+        document.getElementById('welcomeMessage').textContent =
             `Welcome, ${doctorUser.name} | ${doctorUser.department} | ID: DOC-${doctorUser.id}`;
 
         // Tab switching
         function showTab(tabName) {
             document.querySelectorAll('.tab-content').forEach(tab => tab.style.display = 'none');
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            
+
             document.getElementById(tabName + 'Tab').style.display = 'block';
             event.target.closest('.tab-btn').classList.add('active');
-            
+
             if (tabName === 'contacts') {
                 loadContacts();
             }
@@ -203,7 +207,7 @@
 
                     // Update table
                     const tbody = document.getElementById('appointmentsTableBody');
-                    
+
                     if (data.appointments.length === 0) {
                         tbody.innerHTML = `
                             <tr>
@@ -267,7 +271,7 @@
 
                 if (data.success) {
                     const tbody = document.getElementById('contactsTableBody');
-                    
+
                     if (data.contacts.length === 0) {
                         tbody.innerHTML = `
                             <tr>

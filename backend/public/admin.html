@@ -419,6 +419,58 @@
                     </form>
                 </div>
 
+                <!-- Edit Doctor Form -->
+                <div id="editDoctorForm"
+                    style="display: none; background: rgba(255, 217, 61, 0.1); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; border: 2px solid var(--accent-gold);">
+                    <h3 style="margin-bottom: 1rem; color: var(--accent-gold);"><i class="fas fa-edit"></i> Edit Doctor
+                    </h3>
+                    <form onsubmit="saveEditDoctor(event)"
+                        style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+                        <input type="hidden" id="editDoctorId">
+                        <div class="form-group">
+                            <label>Name *</label>
+                            <input type="text" id="editDoctorName" placeholder="Dr. Full Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email *</label>
+                            <input type="email" id="editDoctorEmail" placeholder="doctor@healthplus.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Department *</label>
+                            <select id="editDoctorDept" required>
+                                <option value="">Select Department</option>
+                                <option value="General Medicine">General Medicine</option>
+                                <option value="Pediatrics">Pediatrics</option>
+                                <option value="Cardiology">Cardiology</option>
+                                <option value="Dermatology">Dermatology</option>
+                                <option value="Orthopedics">Orthopedics</option>
+                                <option value="Neurology">Neurology</option>
+                                <option value="Ophthalmology">Ophthalmology</option>
+                                <option value="Gynecology">Gynecology</option>
+                                <option value="Psychiatry">Psychiatry</option>
+                                <option value="ENT">ENT</option>
+                                <option value="Dentistry">Dentistry</option>
+                                <option value="Physiotherapy">Physiotherapy</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="tel" id="editDoctorPhone" placeholder="Phone number">
+                        </div>
+                        <div class="form-group">
+                            <label>New Password (leave blank to keep current)</label>
+                            <input type="text" id="editDoctorPassword"
+                                placeholder="Leave blank to keep current password">
+                        </div>
+                        <div style="display: flex; align-items: flex-end; gap: 1rem;">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Save
+                                Changes</button>
+                            <button type="button" class="btn btn-glass" onclick="cancelEdit()"><i
+                                    class="fas fa-times"></i> Cancel</button>
+                        </div>
+                    </form>
+                </div>
+
                 <div class="table-wrapper">
                     <table class="data-table">
                         <thead>
@@ -629,7 +681,12 @@
                         <td>${d.email}</td>
                         <td>${d.department}</td>
                         <td>${d.phone || '-'}</td>
-                        <td><button class="btn-delete" onclick="deleteDoctor(${d.id})"><i class="fas fa-trash"></i></button></td>
+                        <td>
+                            <button class="btn-edit" onclick="editDoctor(${d.id}, '${d.name}', '${d.email}', '${d.department}', '${d.phone || ''}')" style="background: var(--accent-teal); color: var(--primary-dark); border: none; padding: 0.3rem 0.6rem; border-radius: 4px; cursor: pointer; margin-right: 0.5rem;">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn-delete" onclick="deleteDoctor(${d.id})"><i class="fas fa-trash"></i></button>
+                        </td>
                     </tr>
                 `).join('');
             } catch (error) {
@@ -689,6 +746,63 @@
             if (!confirm('Delete this doctor account?')) return;
             await fetch(`${API_URL}/admin/doctors/${id}`, { method: 'DELETE' });
             loadDoctors();
+        }
+
+        // Edit Doctor - Show form with data
+        function editDoctor(id, name, email, department, phone) {
+            // Hide add form if visible
+            document.getElementById('addDoctorForm').style.display = 'none';
+
+            // Show edit form and populate data
+            document.getElementById('editDoctorForm').style.display = 'block';
+            document.getElementById('editDoctorId').value = id;
+            document.getElementById('editDoctorName').value = name;
+            document.getElementById('editDoctorEmail').value = email;
+            document.getElementById('editDoctorDept').value = department;
+            document.getElementById('editDoctorPhone').value = phone;
+            document.getElementById('editDoctorPassword').value = ''; // Empty = keep current
+
+            // Scroll to form
+            document.getElementById('editDoctorForm').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Save Edit Doctor
+        async function saveEditDoctor(event) {
+            event.preventDefault();
+
+            const doctorData = {
+                name: document.getElementById('editDoctorName').value,
+                email: document.getElementById('editDoctorEmail').value,
+                department: document.getElementById('editDoctorDept').value,
+                phone: document.getElementById('editDoctorPhone').value,
+                password: document.getElementById('editDoctorPassword').value // Empty = keep current
+            };
+
+            const doctorId = document.getElementById('editDoctorId').value;
+
+            try {
+                const res = await fetch(`${API_URL}/admin/doctors/${doctorId}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(doctorData)
+                });
+                const result = await res.json();
+
+                if (result.success) {
+                    alert('Doctor updated successfully!');
+                    document.getElementById('editDoctorForm').style.display = 'none';
+                    loadDoctors();
+                } else {
+                    alert('Error: ' + (result.error || 'Failed to update doctor'));
+                }
+            } catch (error) {
+                alert('Connection error!');
+            }
+        }
+
+        // Cancel Edit
+        function cancelEdit() {
+            document.getElementById('editDoctorForm').style.display = 'none';
         }
 
         // Delete functions

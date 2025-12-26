@@ -667,6 +667,47 @@ app.delete('/api/admin/doctors/:id', async (req, res) => {
     }
 });
 
+// Edit doctor
+app.put('/api/admin/doctors/:id', async (req, res) => {
+    try {
+        const { name, email, department, phone, password } = req.body;
+        const doctorId = req.params.id;
+
+        if (!name || !email || !department) {
+            return res.status(400).json({ error: 'Name, email, and department are required' });
+        }
+
+        // Check if email is used by another doctor
+        const existing = await db.execute({
+            sql: 'SELECT id FROM doctors WHERE email = ? AND id != ?',
+            args: [email, doctorId]
+        });
+
+        if (existing.rows.length > 0) {
+            return res.status(400).json({ error: 'Email already used by another doctor' });
+        }
+
+        // If password is provided, update it too
+        if (password && password.trim() !== '') {
+            const hashedPassword = bcrypt.hashSync(password, 10);
+            await db.execute({
+                sql: 'UPDATE doctors SET name = ?, email = ?, department = ?, phone = ?, password = ? WHERE id = ?',
+                args: [name, email, department, phone || '', hashedPassword, doctorId]
+            });
+        } else {
+            await db.execute({
+                sql: 'UPDATE doctors SET name = ?, email = ?, department = ?, phone = ? WHERE id = ?',
+                args: [name, email, department, phone || '', doctorId]
+            });
+        }
+
+        res.json({ success: true, message: 'Doctor updated successfully' });
+    } catch (error) {
+        console.error('Edit doctor error:', error);
+        res.status(500).json({ error: 'Failed to update doctor' });
+    }
+});
+
 // ==================== START SERVER ====================
 app.listen(PORT, () => {
     console.log(`
