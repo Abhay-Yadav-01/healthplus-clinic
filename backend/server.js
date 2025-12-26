@@ -418,7 +418,7 @@ app.post('/api/doctors/login', async (req, res) => {
         }
 
         const token = jwt.sign(
-            { id: doctor.id, email: doctor.email, type: 'doctor' },
+            { id: doctor.id, email: doctor.email, name: doctor.name, department: doctor.department, type: 'doctor' },
             JWT_SECRET,
             { expiresIn: '24h' }
         );
@@ -431,12 +431,117 @@ app.post('/api/doctors/login', async (req, res) => {
                 id: doctor.id,
                 name: doctor.name,
                 email: doctor.email,
-                department: doctor.department
+                department: doctor.department,
+                phone: doctor.phone
             }
         });
     } catch (error) {
         console.error('Doctor login error:', error);
         res.status(500).json({ error: 'Login failed' });
+    }
+});
+
+// ==================== DOCTOR DASHBOARD ENDPOINTS ====================
+
+// Get logged-in doctor's profile
+app.get('/api/doctors/me', authenticateToken, async (req, res) => {
+    try {
+        if (req.user.type !== 'doctor') {
+            return res.status(403).json({ error: 'Access denied. Doctor authentication required.' });
+        }
+
+        const result = await db.execute({
+            sql: 'SELECT id, name, email, department, phone, created_at FROM doctors WHERE id = ?',
+            args: [req.user.id]
+        });
+
+        if (result.rows.length === 0) {
+            return res.status(404).json({ error: 'Doctor not found' });
+        }
+
+        res.json({ success: true, doctor: result.rows[0] });
+    } catch (error) {
+        console.error('Get doctor profile error:', error);
+        res.status(500).json({ error: 'Failed to fetch doctor profile' });
+    }
+});
+
+// Get doctor's appointments (filtered by doctor name)
+app.get('/api/doctors/appointments', authenticateToken, async (req, res) => {
+    try {
+        if (req.user.type !== 'doctor') {
+            return res.status(403).json({ error: 'Access denied. Doctor authentication required.' });
+        }
+
+        const doctorName = req.user.name;
+
+        const result = await db.execute({
+            sql: `SELECT * FROM appointments 
+                  WHERE doctor LIKE ? 
+                  ORDER BY appointment_date DESC, appointment_time DESC`,
+            args: [`%${doctorName}%`]
+        });
+
+        // Get stats
+        const allAppointments = result.rows;
+        const today = new Date().toISOString().split('T')[0];
+
+        const todayAppointments = allAppointments.filter(apt => apt.appointment_date === today);
+        const pendingCount = allAppointments.filter(apt => apt.status === 'pending').length;
+        const confirmedCount = allAppointments.filter(apt => apt.status === 'confirmed').length;
+        const completedCount = allAppointments.filter(apt => apt.status === 'completed').length;
+
+        res.json({
+            success: true,
+            appointments: result.rows,
+            stats: {
+                total: allAppointments.length,
+                today: todayAppointments.length,
+                pending: pendingCount,
+                confirmed: confirmedCount,
+                completed: completedCount
+            }
+        });
+    } catch (error) {
+        console.error('Get doctor appointments error:', error);
+        res.status(500).json({ error: 'Failed to fetch appointments' });
+    }
+});
+
+// Get contacts/messages (doctors can view patient inquiries)
+app.get('/api/doctors/contacts', authenticateToken, async (req, res) => {
+    try {
+        if (req.user.type !== 'doctor') {
+            return res.status(403).json({ error: 'Access denied. Doctor authentication required.' });
+        }
+
+        const result = await db.execute('SELECT * FROM contacts ORDER BY created_at DESC LIMIT 50');
+        res.json({ success: true, contacts: result.rows });
+    } catch (error) {
+        console.error('Get contacts error:', error);
+        res.status(500).json({ error: 'Failed to fetch contacts' });
+    }
+});
+
+// Update appointment status
+app.put('/api/appointments/:id/status', authenticateToken, async (req, res) => {
+    try {
+        const { status } = req.body;
+        const appointmentId = req.params.id;
+
+        if (!status || !['pending', 'confirmed', 'completed', 'cancelled'].includes(status)) {
+            return res.status(400).json({ error: 'Valid status required (pending, confirmed, completed, cancelled)' });
+        }
+
+        await db.execute({
+            sql: 'UPDATE appointments SET status = ? WHERE id = ?',
+            args: [status, appointmentId]
+        });
+
+        res.json({ success: true, message: 'Appointment status updated' });
+    } catch (error) {
+        console.error('Update appointment status error:', error);
+        res.status(500).json({ error: 'Failed to update appointment status' });
     }
 });
 

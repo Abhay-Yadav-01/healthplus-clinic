@@ -24,8 +24,8 @@
                 <li><a href="services.html">Services</a></li>
             </ul>
             <div class="nav-cta">
-                <span style="color: var(--text-slate); margin-right: var(--spacing-sm);">
-                    <i class="fas fa-user-md"></i> Dr. Abhay Yadav
+                <span id="doctorNameHeader" style="color: var(--text-slate); margin-right: var(--spacing-sm);">
+                    <i class="fas fa-user-md"></i> Loading...
                 </span>
                 <button class="btn btn-danger btn-sm" onclick="logout()">
                     <i class="fas fa-sign-out-alt"></i> Logout
@@ -43,7 +43,7 @@
     <header class="page-header">
         <div class="container">
             <h1><i class="fas fa-tachometer-alt"></i> Doctor Dashboard</h1>
-            <p>Welcome, Dr. Abhay Yadav | Psychiatry | ID: DOC-2019-001</p>
+            <p id="welcomeMessage">Welcome, Loading... | Department | ID: ...</p>
         </div>
     </header>
 
@@ -55,211 +55,86 @@
                 <div class="dashboard-card highlight">
                     <i class="fas fa-calendar-check"></i>
                     <h3>Today's Appointments</h3>
-                    <div class="value">8</div>
+                    <div class="value" id="statToday">0</div>
                 </div>
                 <div class="dashboard-card">
                     <i class="fas fa-user-clock"></i>
-                    <h3>In Waiting Queue</h3>
-                    <div class="value">3</div>
+                    <h3>Pending</h3>
+                    <div class="value" id="statPending">0</div>
                 </div>
                 <div class="dashboard-card">
                     <i class="fas fa-users"></i>
                     <h3>Total Patients</h3>
-                    <div class="value">156</div>
+                    <div class="value" id="statTotal">0</div>
                 </div>
                 <div class="dashboard-card">
-                    <i class="fas fa-rupee-sign"></i>
-                    <h3>Today's Earnings</h3>
-                    <div class="value">₹4,800</div>
+                    <i class="fas fa-check-circle"></i>
+                    <h3>Completed</h3>
+                    <div class="value" id="statCompleted">0</div>
                 </div>
             </div>
 
-            <!-- Main Content -->
-            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: var(--spacing-xl);">
-                <!-- Left Column -->
-                <div>
-                    <!-- Today's Appointments -->
-                    <div class="portal-card" style="margin-bottom: var(--spacing-xl);">
-                        <h2><i class="fas fa-calendar-day"></i> Today's Appointments - December 8, 2025</h2>
-                        <div class="table-wrapper" style="margin-top: var(--spacing-md);">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th>Time</th>
-                                        <th>Patient</th>
-                                        <th>Type</th>
-                                        <th>Status</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>04:00 PM</td>
-                                        <td>
-                                            <strong>Anoop Chaudhary</strong>
-                                            <br><small style="color: var(--text-slate);">HP2018001 | Male, 32</small>
-                                        </td>
-                                        <td>Follow-up</td>
-                                        <td><span class="status status-confirmed">In Clinic</span></td>
-                                        <td>
-                                            <button class="btn btn-primary btn-sm"
-                                                onclick="startConsultation(1)">Start</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>04:30 PM</td>
-                                        <td>
-                                            <strong>Aditya Kumar</strong>
-                                            <br><small style="color: var(--text-slate);">HP2019045 | Male, 28</small>
-                                        </td>
-                                        <td>New Patient</td>
-                                        <td><span class="status status-pending">Waiting</span></td>
-                                        <td>
-                                            <button class="btn btn-glass btn-sm"
-                                                onclick="viewPatientRecord(2)">View</button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>05:00 PM</td>
-                                        <td>
-                                            <strong>Shubham Prajapati</strong>
-                                            <br><small style="color: var(--text-slate);">HP2021067 | Male, 25</small>
-                                        </td>
-                                        <td>Video Call</td>
-                                        <td><span class="status status-pending">Scheduled</span></td>
-                                        <td>
-                                            <button class="btn btn-glass btn-sm" onclick="startVideoCall(3)">
-                                                <i class="fas fa-video"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>05:30 PM</td>
-                                        <td>
-                                            <strong>Rahul Singh</strong>
-                                            <br><small style="color: var(--text-slate);">HP2022089 | Male, 35</small>
-                                        </td>
-                                        <td>Follow-up</td>
-                                        <td><span class="status status-pending">Scheduled</span></td>
-                                        <td>
-                                            <button class="btn btn-glass btn-sm"
-                                                onclick="viewPatientRecord(4)">View</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+            <!-- Tabs -->
+            <div class="tabs" style="margin-bottom: var(--spacing-lg);">
+                <button class="tab-btn active" onclick="showTab('appointments')">
+                    <i class="fas fa-calendar-alt"></i> Appointments
+                </button>
+                <button class="tab-btn" onclick="showTab('contacts')">
+                    <i class="fas fa-envelope"></i> Patient Messages
+                </button>
+            </div>
 
-                    <!-- Write Prescription -->
-                    <div class="portal-card">
-                        <h2><i class="fas fa-prescription-bottle-alt"></i> Write Prescription</h2>
-                        <form id="prescriptionForm" style="margin-top: var(--spacing-md);">
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="rxPatient"><i class="fas fa-user"></i> Patient</label>
-                                    <select id="rxPatient" required>
-                                        <option value="">Select Patient</option>
-                                        <option value="1">Anoop Chaudhary - HP2018001</option>
-                                        <option value="2">Aditya Kumar - HP2019045</option>
-                                        <option value="3">Shubham Prajapati - HP2021067</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="rxDate"><i class="fas fa-calendar"></i> Date</label>
-                                    <input type="date" id="rxDate" required>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="rxDiagnosis"><i class="fas fa-notes-medical"></i> Diagnosis</label>
-                                <input type="text" id="rxDiagnosis" placeholder="Primary diagnosis" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="rxMedicines"><i class="fas fa-pills"></i> Medicines</label>
-                                <textarea id="rxMedicines" rows="4" placeholder="List medicines with dosage..."
-                                    required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="rxNotes"><i class="fas fa-comment-medical"></i> Notes / Instructions</label>
-                                <textarea id="rxNotes" rows="3"
-                                    placeholder="Additional instructions for patient..."></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-lg">
-                                <i class="fas fa-save"></i> Save & Send Prescription
-                            </button>
-                        </form>
+            <!-- Appointments Tab -->
+            <div id="appointmentsTab" class="tab-content active">
+                <div class="portal-card">
+                    <h2><i class="fas fa-calendar-day"></i> My Appointments</h2>
+                    <div class="table-wrapper" style="margin-top: var(--spacing-md);">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Patient</th>
+                                    <th>Type</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="appointmentsTableBody">
+                                <tr>
+                                    <td colspan="6" style="text-align: center; padding: 2rem;">
+                                        <i class="fas fa-spinner fa-spin"></i> Loading appointments...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
+            </div>
 
-                <!-- Right Column -->
-                <div>
-                    <!-- Quick Actions -->
-                    <div class="portal-card" style="margin-bottom: var(--spacing-lg);">
-                        <h2><i class="fas fa-bolt"></i> Quick Actions</h2>
-                        <div style="display: grid; gap: var(--spacing-sm); margin-top: var(--spacing-md);">
-                            <button class="btn btn-primary" style="width: 100%;" onclick="writePrescription()">
-                                <i class="fas fa-prescription"></i> New Prescription
-                            </button>
-                            <button class="btn btn-glass" style="width: 100%;">
-                                <i class="fas fa-flask"></i> Order Lab Test
-                            </button>
-                            <button class="btn btn-glass" style="width: 100%;">
-                                <i class="fas fa-history"></i> Patient History
-                            </button>
-                            <button class="btn btn-glass" style="width: 100%;">
-                                <i class="fas fa-calendar-alt"></i> Manage Schedule
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Today's Summary -->
-                    <div class="portal-card" style="margin-bottom: var(--spacing-lg);">
-                        <h2><i class="fas fa-chart-pie"></i> Today's Summary</h2>
-                        <div style="margin-top: var(--spacing-md);">
-                            <div
-                                style="display: flex; justify-content: space-between; padding: var(--spacing-sm) 0; border-bottom: 1px solid var(--glass-border);">
-                                <span style="color: var(--text-slate);">Completed</span>
-                                <span style="color: var(--accent-teal); font-weight: 600;">5</span>
-                            </div>
-                            <div
-                                style="display: flex; justify-content: space-between; padding: var(--spacing-sm) 0; border-bottom: 1px solid var(--glass-border);">
-                                <span style="color: var(--text-slate);">Remaining</span>
-                                <span style="color: var(--accent-gold); font-weight: 600;">3</span>
-                            </div>
-                            <div
-                                style="display: flex; justify-content: space-between; padding: var(--spacing-sm) 0; border-bottom: 1px solid var(--glass-border);">
-                                <span style="color: var(--text-slate);">Cancelled</span>
-                                <span style="color: var(--accent-coral); font-weight: 600;">1</span>
-                            </div>
-                            <div style="display: flex; justify-content: space-between; padding: var(--spacing-sm) 0;">
-                                <span style="color: var(--text-slate);">Video Calls</span>
-                                <span style="color: var(--accent-purple); font-weight: 600;">2</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Current Patient -->
-                    <div class="portal-card"
-                        style="background: linear-gradient(135deg, rgba(100, 255, 218, 0.1), rgba(100, 255, 218, 0.05)); border-color: var(--accent-teal);">
-                        <h2><i class="fas fa-user-injured"></i> Current Patient</h2>
-                        <div style="margin-top: var(--spacing-md); text-align: center;">
-                            <div
-                                style="width: 80px; height: 80px; background: var(--gradient-teal); border-radius: 50%; margin: 0 auto var(--spacing-md); display: flex; align-items: center; justify-content: center;">
-                                <i class="fas fa-user" style="font-size: 2rem; color: var(--primary-dark);"></i>
-                            </div>
-                            <h3 style="margin-bottom: 0.2rem;">Anoop Chaudhary</h3>
-                            <p style="color: var(--accent-teal); font-size: 0.9rem; margin: 0;">HP2018001</p>
-                            <p style="color: var(--text-slate); font-size: 0.85rem;">Male, 32 years | Follow-up</p>
-                            <div
-                                style="display: flex; gap: var(--spacing-sm); justify-content: center; margin-top: var(--spacing-md);">
-                                <button class="btn btn-glass btn-sm" onclick="viewPatientRecord(1)">
-                                    <i class="fas fa-file-medical"></i> History
-                                </button>
-                                <button class="btn btn-glass btn-sm" onclick="callPatient(1)">
-                                    <i class="fas fa-phone"></i> Call
-                                </button>
-                            </div>
-                        </div>
+            <!-- Contacts Tab -->
+            <div id="contactsTab" class="tab-content" style="display: none;">
+                <div class="portal-card">
+                    <h2><i class="fas fa-envelope"></i> Patient Messages & Reviews</h2>
+                    <div class="table-wrapper" style="margin-top: var(--spacing-md);">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Subject</th>
+                                    <th>Message</th>
+                                </tr>
+                            </thead>
+                            <tbody id="contactsTableBody">
+                                <tr>
+                                    <td colspan="5" style="text-align: center; padding: 2rem;">
+                                        <i class="fas fa-spinner fa-spin"></i> Loading messages...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -278,6 +153,186 @@
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        // Check if logged in
+        const doctorToken = localStorage.getItem('doctorToken');
+        const doctorUser = JSON.parse(localStorage.getItem('doctorUser') || '{}');
+
+        if (!doctorToken || !doctorUser.name) {
+            alert('Please login first');
+            window.location.href = 'doctor-portal.html';
+        }
+
+        // Set doctor info in header
+        document.getElementById('doctorNameHeader').innerHTML = 
+            `<i class="fas fa-user-md"></i> ${doctorUser.name}`;
+        document.getElementById('welcomeMessage').textContent = 
+            `Welcome, ${doctorUser.name} | ${doctorUser.department} | ID: DOC-${doctorUser.id}`;
+
+        // Tab switching
+        function showTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.style.display = 'none');
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabName + 'Tab').style.display = 'block';
+            event.target.closest('.tab-btn').classList.add('active');
+            
+            if (tabName === 'contacts') {
+                loadContacts();
+            }
+        }
+
+        // Load appointments
+        async function loadAppointments() {
+            try {
+                const response = await fetch('/api/doctors/appointments', {
+                    headers: {
+                        'Authorization': `Bearer ${doctorToken}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // Update stats
+                    document.getElementById('statToday').textContent = data.stats.today;
+                    document.getElementById('statPending').textContent = data.stats.pending;
+                    document.getElementById('statTotal').textContent = data.stats.total;
+                    document.getElementById('statCompleted').textContent = data.stats.completed;
+
+                    // Update table
+                    const tbody = document.getElementById('appointmentsTableBody');
+                    
+                    if (data.appointments.length === 0) {
+                        tbody.innerHTML = `
+                            <tr>
+                                <td colspan="6" style="text-align: center; padding: 2rem; color: var(--text-slate);">
+                                    <i class="fas fa-calendar-times" style="font-size: 2rem; margin-bottom: 1rem; display: block;"></i>
+                                    No appointments found. Patients will appear here when they book with you.
+                                </td>
+                            </tr>
+                        `;
+                        return;
+                    }
+
+                    tbody.innerHTML = data.appointments.map(apt => `
+                        <tr>
+                            <td>${apt.appointment_date}</td>
+                            <td>${apt.appointment_time}</td>
+                            <td>
+                                <strong>${apt.patient_name}</strong>
+                                <br><small style="color: var(--text-slate);">${apt.patient_phone}</small>
+                            </td>
+                            <td>${apt.consultation_type}</td>
+                            <td>
+                                <span class="status status-${apt.status}">${apt.status}</span>
+                            </td>
+                            <td>
+                                <select onchange="updateStatus(${apt.id}, this.value)" style="padding: 0.3rem; border-radius: 4px; background: var(--glass-bg); color: var(--text-light); border: 1px solid var(--glass-border);">
+                                    <option value="pending" ${apt.status === 'pending' ? 'selected' : ''}>Pending</option>
+                                    <option value="confirmed" ${apt.status === 'confirmed' ? 'selected' : ''}>Confirmed</option>
+                                    <option value="completed" ${apt.status === 'completed' ? 'selected' : ''}>Completed</option>
+                                    <option value="cancelled" ${apt.status === 'cancelled' ? 'selected' : ''}>Cancelled</option>
+                                </select>
+                            </td>
+                        </tr>
+                    `).join('');
+                } else {
+                    console.error('Failed to load appointments:', data.error);
+                }
+            } catch (error) {
+                console.error('Error loading appointments:', error);
+                document.getElementById('appointmentsTableBody').innerHTML = `
+                    <tr>
+                        <td colspan="6" style="text-align: center; padding: 2rem; color: var(--accent-coral);">
+                            <i class="fas fa-exclamation-triangle"></i> Error loading appointments. Please refresh.
+                        </td>
+                    </tr>
+                `;
+            }
+        }
+
+        // Load contacts/messages
+        async function loadContacts() {
+            try {
+                const response = await fetch('/api/doctors/contacts', {
+                    headers: {
+                        'Authorization': `Bearer ${doctorToken}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    const tbody = document.getElementById('contactsTableBody');
+                    
+                    if (data.contacts.length === 0) {
+                        tbody.innerHTML = `
+                            <tr>
+                                <td colspan="5" style="text-align: center; padding: 2rem; color: var(--text-slate);">
+                                    <i class="fas fa-inbox" style="font-size: 2rem; margin-bottom: 1rem; display: block;"></i>
+                                    No messages yet.
+                                </td>
+                            </tr>
+                        `;
+                        return;
+                    }
+
+                    tbody.innerHTML = data.contacts.map(contact => `
+                        <tr>
+                            <td>${new Date(contact.created_at).toLocaleDateString()}</td>
+                            <td><strong>${contact.name}</strong></td>
+                            <td>${contact.email}</td>
+                            <td>${contact.subject}</td>
+                            <td style="max-width: 300px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                                ${contact.message}
+                            </td>
+                        </tr>
+                    `).join('');
+                }
+            } catch (error) {
+                console.error('Error loading contacts:', error);
+            }
+        }
+
+        // Update appointment status
+        async function updateStatus(appointmentId, newStatus) {
+            try {
+                const response = await fetch(`/api/appointments/${appointmentId}/status`, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `Bearer ${doctorToken}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ status: newStatus })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // Refresh appointments to update stats
+                    loadAppointments();
+                } else {
+                    alert('Failed to update status: ' + data.error);
+                }
+            } catch (error) {
+                console.error('Error updating status:', error);
+                alert('Error updating status');
+            }
+        }
+
+        // Logout function
+        function logout() {
+            localStorage.removeItem('doctorToken');
+            localStorage.removeItem('doctorUser');
+            window.location.href = 'doctor-portal.html';
+        }
+
+        // Load data on page load
+        loadAppointments();
+    </script>
 </body>
 
 </html>

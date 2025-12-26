@@ -98,29 +98,44 @@ async function initializeDatabase() {
             // Column already exists, ignore error
         }
 
-        // Check if doctors exist
-        const doctorCount = await db.execute('SELECT COUNT(*) as count FROM doctors');
+        // Check and add doctors - insert any missing doctors
+        const hashedPassword = bcrypt.hashSync('doctor123', 10);
 
-        if (doctorCount.rows[0].count === 0) {
-            const hashedPassword = bcrypt.hashSync('doctor123', 10);
+        const doctors = [
+            ['Dr. Pawan Pandey', 'pawan@healthplus.com', hashedPassword, 'General Medicine', '7052691142'],
+            ['Dr. Anuradha', 'anuradha@healthplus.com', hashedPassword, 'Pediatrics', '7052691143'],
+            ['Dr. Kaushal Kumar', 'kaushal@healthplus.com', hashedPassword, 'Cardiology', '7052691144'],
+            ['Dr. Mudit Dubey', 'mudit@healthplus.com', hashedPassword, 'Dermatology', '7052691145'],
+            ['Dr. Anupama Srivastva', 'anupama@healthplus.com', hashedPassword, 'Gynecology', '7052691146'],
+            ['Dr. Abhay Yadav', 'abhay@healthplus.com', hashedPassword, 'Psychiatry', '7052691147'],
+            ['Dr. Shahil Ansari', 'shahil@healthplus.com', hashedPassword, 'Neurology', '7052691148'],
+            ['Dr. Priya Singh', 'priya@healthplus.com', hashedPassword, 'Ophthalmology', '7052691149'],
+            ['Dr. Rajesh Verma', 'rajesh@healthplus.com', hashedPassword, 'Orthopedics', '7052691150'],
+            ['Dr. Sunita Sharma', 'sunita@healthplus.com', hashedPassword, 'Dentistry', '7052691151'],
+            ['Dr. Amit Gupta', 'amit@healthplus.com', hashedPassword, 'ENT', '7052691152'],
+            ['Dr. Neha Agarwal', 'neha@healthplus.com', hashedPassword, 'Physiotherapy', '7052691153']
+        ];
 
-            const doctors = [
-                ['Dr. Pawan Pandey', 'pawan@healthplus.com', hashedPassword, 'General Medicine', '7052691142'],
-                ['Dr. Anuradha', 'anuradha@healthplus.com', hashedPassword, 'Pediatrics', '7052691143'],
-                ['Dr. Kaushal Kumar', 'kaushal@healthplus.com', hashedPassword, 'Cardiology', '7052691144'],
-                ['Dr. Mudit Dubey', 'mudit@healthplus.com', hashedPassword, 'Dermatology', '7052691145'],
-                ['Dr. Anupama Srivastva', 'anupama@healthplus.com', hashedPassword, 'Gynecology', '7052691146'],
-                ['Dr. Abhay Yadav', 'abhay@healthplus.com', hashedPassword, 'Psychiatry', '7052691147']
-            ];
-
-            for (const doc of doctors) {
-                await db.execute({
-                    sql: 'INSERT INTO doctors (name, email, password, department, phone) VALUES (?, ?, ?, ?, ?)',
-                    args: doc
+        for (const doc of doctors) {
+            try {
+                // Check if doctor already exists
+                const existing = await db.execute({
+                    sql: 'SELECT id FROM doctors WHERE email = ?',
+                    args: [doc[1]]
                 });
+
+                if (existing.rows.length === 0) {
+                    await db.execute({
+                        sql: 'INSERT INTO doctors (name, email, password, department, phone) VALUES (?, ?, ?, ?, ?)',
+                        args: doc
+                    });
+                    console.log(`Doctor ${doc[0]} added to database`);
+                }
+            } catch (e) {
+                // Ignore if already exists
             }
-            console.log('Default doctors created with password: doctor123');
         }
+        console.log('All 12 doctors ensured in database with password: doctor123');
 
         console.log('Database initialized successfully!');
     } catch (error) {
