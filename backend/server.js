@@ -17,13 +17,16 @@ const JWT_SECRET = process.env.JWT_SECRET || 'healthplus-clinic-secret-key-2024'
 const GMAIL_USER = process.env.GMAIL_USER || 'yadav00007ab@gmail.com';
 const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD || 'snyeydfdquftwfss';
 
-// Initialize Nodemailer with Gmail SMTP
+// Initialize Nodemailer with Gmail SMTP (with fast timeout fallback for hosting environments)
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         user: GMAIL_USER,
         pass: GMAIL_APP_PASSWORD
-    }
+    },
+    connectionTimeout: 3000, // 3 seconds connection timeout
+    greetingTimeout: 3000,   // 3 seconds greeting timeout
+    socketTimeout: 5000      // 5 seconds socket inactivity timeout
 });
 
 // ==================== MIDDLEWARE ====================
