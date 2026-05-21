@@ -6,16 +6,25 @@ const jwt = require('jsonwebtoken');
 const { v4: uuidv4 } = require('uuid');
 const path = require('path');
 const db = require('./database');
-const { Resend } = require('resend');
+const nodemailer = require('nodemailer');
 
 // ==================== APP CONFIG ====================
 const app = express();
 const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET || 'healthplus-clinic-secret-key-2024';
-const RESEND_API_KEY = process.env.RESEND_API_KEY || 're_123456789'; // Will be replaced with actual key
 
-// Initialize Resend for email
-const resend = new Resend(RESEND_API_KEY);
+// Gmail SMTP Configuration
+const GMAIL_USER = process.env.GMAIL_USER || 'yadav00007ab@gmail.com';
+const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD || 'snyeydfdquftwfss';
+
+// Initialize Nodemailer with Gmail SMTP
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: GMAIL_USER,
+        pass: GMAIL_APP_PASSWORD
+    }
+});
 
 // ==================== MIDDLEWARE ====================
 app.use(cors());
@@ -49,17 +58,17 @@ function generateOTP() {
     return Math.floor(100000 + Math.random() * 900000).toString();
 }
 
-// Send Email OTP via Resend
+// Send Email OTP via Gmail SMTP
 async function sendEmailOTP(email, otp) {
     try {
-        const result = await resend.emails.send({
-            from: 'HealthPlus Clinic <onboarding@resend.dev>',
+        const result = await transporter.sendMail({
+            from: `"HealthPlus Clinic" <${GMAIL_USER}>`,
             to: email,
             subject: 'Your HealthPlus Clinic Verification OTP',
             html: `
                 <div style="font-family: Arial, sans-serif; max-width: 500px; margin: 0 auto; padding: 20px; background: linear-gradient(135deg, #0a192f, #112240); border-radius: 10px;">
                     <h2 style="color: #64ffda; text-align: center;">
-                        <span style="color: #ff6b6b;">❤</span> HealthPlus Clinic
+                        <span style="color: #ff6b6b;">&#10084;</span> HealthPlus Clinic
                     </h2>
                     <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 8px; margin: 20px 0;">
                         <p style="color: #ccd6f6; font-size: 16px;">Your One-Time Password (OTP) for registration is:</p>
@@ -74,8 +83,8 @@ async function sendEmailOTP(email, otp) {
                 </div>
             `
         });
-        console.log('Email sent:', result);
-        return result.id ? true : false;
+        console.log('Email sent:', result.messageId);
+        return true;
     } catch (error) {
         console.error('Email Error:', error);
         return false;
