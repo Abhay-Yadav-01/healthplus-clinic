@@ -15,6 +15,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'healthplus-clinic-secret-key-2024'
 const EMAILJS_SERVICE_ID = process.env.EMAILJS_SERVICE_ID || 'service_3htujee';
 const EMAILJS_TEMPLATE_ID = process.env.EMAILJS_TEMPLATE_ID || 'template_j22ezfk';
 const EMAILJS_PUBLIC_KEY = process.env.EMAILJS_PUBLIC_KEY || 'sjrrpys9EtJ03VMEg';
+const EMAILJS_PRIVATE_KEY = process.env.EMAILJS_PRIVATE_KEY || 'KLptdD6J7rojcOtSIrr4a';
 
 // ==================== MIDDLEWARE ====================
 app.use(cors());
@@ -60,6 +61,7 @@ async function sendEmailOTP(email, otp) {
                 service_id: EMAILJS_SERVICE_ID,
                 template_id: EMAILJS_TEMPLATE_ID,
                 user_id: EMAILJS_PUBLIC_KEY,
+                accessToken: EMAILJS_PRIVATE_KEY, // Pass the private key for authentication
                 template_params: {
                     email: email,
                     passcode: otp,
