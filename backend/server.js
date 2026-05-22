@@ -6,28 +6,15 @@ const jwt = require('jsonwebtoken');
 const { v4: uuidv4 } = require('uuid');
 const path = require('path');
 const db = require('./database');
-const nodemailer = require('nodemailer');
-
 // ==================== APP CONFIG ====================
 const app = express();
 const PORT = process.env.PORT || 3000;
 const JWT_SECRET = process.env.JWT_SECRET || 'healthplus-clinic-secret-key-2024';
 
-// Gmail SMTP Configuration
-const GMAIL_USER = process.env.GMAIL_USER || 'yadav00007ab@gmail.com';
-const GMAIL_APP_PASSWORD = process.env.GMAIL_APP_PASSWORD || 'snyeydfdquftwfss';
-
-// Initialize Nodemailer with Gmail SMTP (with fast timeout fallback for hosting environments)
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: GMAIL_USER,
-        pass: GMAIL_APP_PASSWORD
-    },
-    connectionTimeout: 3000, // 3 seconds connection timeout
-    greetingTimeout: 3000,   // 3 seconds greeting timeout
-    socketTimeout: 5000      // 5 seconds socket inactivity timeout
-});
+// EmailJS Configuration
+const EMAILJS_SERVICE_ID = process.env.EMAILJS_SERVICE_ID || 'service_3htujee';
+const EMAILJS_TEMPLATE_ID = process.env.EMAILJS_TEMPLATE_ID || 'template_j22ezfk';
+const EMAILJS_PUBLIC_KEY = process.env.EMAILJS_PUBLIC_KEY || 'sjrrpys9EtJ03VMEg';
 
 // ==================== MIDDLEWARE ====================
 app.use(cors());
@@ -61,35 +48,36 @@ function generateOTP() {
     return Math.floor(100000 + Math.random() * 900000).toString();
 }
 
-// Send Email OTP via Gmail SMTP
+// Send Email OTP via EmailJS API (Free HTTPS route, 100% compatible with Render Free Tier)
 async function sendEmailOTP(email, otp) {
     try {
-        const result = await transporter.sendMail({
-            from: `"HealthPlus Clinic" <${GMAIL_USER}>`,
-            to: email,
-            subject: 'Your HealthPlus Clinic Verification OTP',
-            html: `
-                <div style="font-family: Arial, sans-serif; max-width: 500px; margin: 0 auto; padding: 20px; background: linear-gradient(135deg, #0a192f, #112240); border-radius: 10px;">
-                    <h2 style="color: #64ffda; text-align: center;">
-                        <span style="color: #ff6b6b;">&#10084;</span> HealthPlus Clinic
-                    </h2>
-                    <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 8px; margin: 20px 0;">
-                        <p style="color: #ccd6f6; font-size: 16px;">Your One-Time Password (OTP) for registration is:</p>
-                        <div style="background: rgba(100,255,218,0.2); padding: 15px; border-radius: 8px; text-align: center; margin: 15px 0;">
-                            <span style="font-size: 32px; font-weight: bold; letter-spacing: 8px; color: #64ffda;">${otp}</span>
-                        </div>
-                        <p style="color: #8892b0; font-size: 14px;">This OTP is valid for 10 minutes. Do not share it with anyone.</p>
-                    </div>
-                    <p style="color: #8892b0; font-size: 12px; text-align: center;">
-                        If you didn't request this, please ignore this email.
-                    </p>
-                </div>
-            `
+        const response = await fetch('https://api.emailjs.com/api/v1.0/email/send', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                service_id: EMAILJS_SERVICE_ID,
+                template_id: EMAILJS_TEMPLATE_ID,
+                user_id: EMAILJS_PUBLIC_KEY,
+                template_params: {
+                    email: email,
+                    passcode: otp,
+                    time: '10 minutes'
+                }
+            })
         });
-        console.log('Email sent:', result.messageId);
-        return true;
+
+        if (response.ok) {
+            console.log('Email sent successfully via EmailJS');
+            return true;
+        } else {
+            const errorText = await response.text();
+            console.error('EmailJS Error response:', errorText);
+            return false;
+        }
     } catch (error) {
-        console.error('Email Error:', error);
+        console.error('EmailJS Request Error:', error);
         return false;
     }
 }
